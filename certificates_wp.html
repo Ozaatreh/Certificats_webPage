@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +14,7 @@
             text-align: center;
             margin: 0;
             padding: 0;
+
         }
 
         /* Title */
@@ -24,6 +26,25 @@
             letter-spacing: 2px;
         }
 
+
+        @keyframes colorFade {
+            0% {
+                color: #f4d03f;
+            }
+
+            50% {
+                color: #4dd0e1;
+            }
+
+            100% {
+                color: #f4d03f;
+            }
+        }
+
+        h1 {
+            animation: colorFade 3s infinite alternate ease-in-out;
+        }
+
         /* Certificate Grid */
         .certificate-container {
             display: flex;
@@ -33,6 +54,32 @@
             margin: 40px auto;
             max-width: 1200px;
             padding: 20px;
+        }
+
+        /* Certificate Card Glow Animation */
+        @keyframes cardGlow {
+            0% {
+                box-shadow: 0px 4px 10px rgba(244, 208, 63, 0.6);
+                border: 2px solid #f4d03f;
+            }
+
+            /* Gold */
+            50% {
+                box-shadow: 0px 4px 15px rgba(77, 208, 225, 0.7);
+                border: 2px solid #4dd0e1;
+            }
+
+            /* Cyan */
+            100% {
+                box-shadow: 0px 4px 10px rgba(244, 208, 63, 0.6);
+                border: 2px solid #f4d03f;
+            }
+
+            /* Back to Gold */
+        }
+
+        .certificate {
+            animation: cardGlow 4s infinite alternate ease-in-out;
         }
 
         /* Individual Certificate Card */
@@ -54,7 +101,7 @@
 
         /* Certificate Title */
         .certificate h2 {
-            font-size: 1.4rem;
+            font-size: 1.1rem;
             margin-bottom: 15px;
             font-weight: 500;
         }
@@ -73,15 +120,42 @@
 
         /* Cover Letter */
         .cover-letter {
-            max-width: 800px;
+            max-width: 1150px;
             margin: 40px auto;
             padding: 20px;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border-radius: 12px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-            text-align: left;
+            text-align: justify;
+            font-family: 'Times New Roman', Times, serif;
             line-height: 1.6;
+        }
+
+        /* About Me Section Glow Animation */
+        @keyframes aboutGlow {
+            0% {
+                box-shadow: 0px 4px 10px rgba(244, 208, 63, 0.6);
+                border: 2px solid #f4d03f;
+            }
+
+            /* Gold */
+            50% {
+                box-shadow: 0px 4px 15px rgba(77, 208, 225, 0.7);
+                border: 2px solid #4dd0e1;
+            }
+
+            /* Cyan */
+            100% {
+                box-shadow: 0px 4px 10px rgba(244, 208, 63, 0.6);
+                border: 2px solid #f4d03f;
+            }
+
+            /* Back to Gold */
+        }
+
+        .cover-letter {
+            animation: aboutGlow 4s infinite alternate ease-in-out;
         }
 
         /* Social Icons */
@@ -93,12 +167,35 @@
             padding-bottom: 20px;
         }
 
+        /* Icon Animation */
+        @keyframes iconGlow {
+            0% {
+                filter: drop-shadow(0 0 5px #f4d03f);
+            }
+
+            /* Gold Glow */
+            50% {
+                filter: drop-shadow(0 0 10px #4dd0e1);
+            }
+
+            /* Cyan Glow */
+            100% {
+                filter: drop-shadow(0 0 5px #f4d03f);
+            }
+
+            /* Back to Gold Glow */
+        }
+
+        .social-icons a img {
+            animation: iconGlow 3s infinite alternate ease-in-out;
+        }
+
         .social-icons a {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.2);
             text-decoration: none;
@@ -110,73 +207,128 @@
         .social-icons a:hover {
             background: rgba(255, 255, 255, 0.4);
         }
+
+        /* Profile Image Container */
+        .profile-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        /* Circular Profile Image */
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.5);
+            transition: transform 0.3s ease-in-out;
+            animation: glowEffect 3s infinite alternate ease-in-out;
+        }
+
+        /* Animation Effect */
+        @keyframes glowEffect {
+            0% {
+                box-shadow: 0px 0px 10px rgba(244, 208, 63, 0.6);
+            }
+
+            50% {
+                box-shadow: 0px 0px 15px rgba(77, 208, 225, 0.7);
+            }
+
+            100% {
+                box-shadow: 0px 0px 10px rgba(244, 208, 63, 0.6);
+            }
+        }
+
+        /* Hover Effect */
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
     </style>
 </head>
+
 <body>
+    <div class="profile-container">
+        <img src="https://github.com/Ozaatreh/Certificats_webPage/blob/main/photo_2025-03-28_17-11-31.jpg?raw=true"
+            alt="Omar Zaatreh" class="profile-image">
+    </div>
 
     <h1>Omar Zaatreh</h1>
-    <h2>Software Engineer</h2>
+    <h2 style="animation: colorFade 5s infinite alternate ease-in-out;">Software Engineer</h2>
 
     <div class="certificate-container">
         <div class="certificate">
             <h2>Flutter & Dart Certificate</h2>
-            <a href="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/Omar%20Murad%20Zaatreh%20(1).jpg" target="_blank">
-                <img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/Omar%20Murad%20Zaatreh%20(1).jpg" alt="Flutter & Dart Certificate">
+            <a href="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/Omar%20Murad%20Zaatreh%20(1).jpg"
+                target="_blank">
+                <img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/Omar%20Murad%20Zaatreh%20(1).jpg"
+                    alt="Flutter & Dart Certificate">
             </a>
         </div>
         <div class="certificate">
             <h2>CCNA Certificate</h2>
-            <a href="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/ccna_certificate.jpg" target="_blank">
-                <img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/ccna_certificate.jpg" alt="CCNA Certificate">
+            <a href="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/ccna_certificate.jpg"
+                target="_blank">
+                <img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/ccna_certificate.jpg"
+                    alt="CCNA Certificate">
             </a>
         </div>
         <div class="certificate">
             <h2>Oracle SQL Databases Specialization</h2>
             <a href="https://www.coursera.org/account/accomplishments/specialization/61SVAY1E412V" target="_blank">
-                <img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/sql_pic.png" alt="Oracle SQL Certificate">
+                <img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/sql_pic.png"
+                    alt="Oracle SQL Certificate">
             </a>
         </div>
         <div class="certificate">
             <h2>Data Visualization and Dashboards with Excel and Cognos</h2>
             <a href="https://coursera.org/verify/WOGUB7MK5WBE" target="_blank">
-                <img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/ibm_vis.png" alt="IBM Business Analysis Certificate">
+                <img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/ibm_vis.png"
+                    alt="IBM Business Analysis Certificate">
             </a>
         </div>
         <div class="certificate">
             <h2>Excel Basics for Data Analysis</h2>
             <a href="https://www.coursera.org/account/accomplishments/certificate/SZYMFQSWY1RO" target="_blank">
-                <img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/ibm_b_anlys.png" alt="IBM Business Analysis Certificate">
+                <img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/ibm_b_anlys.png"
+                    alt="IBM Business Analysis Certificate">
             </a>
         </div>
     </div>
 
     <div class="cover-letter">
-        <h2>About Me</h2>
-        <p>
-            I am writing to express my passion for software development and my eagerness to contribute my skills and experience to your team. As a soon-to-be graduate in Software Engineering, I have developed a strong foundation in programming, system design, and problem-solving. My academic journey has been enriched by hands-on experience in various technologies, particularly in mobile and web development.
+        <h2 style="animation: colorFade 3s infinite alternate ease-in-out; font-family: 'Times New Roman', Times, serif
+        ;">About Me</h2>
+        <p style="font-size:  x-large;">
+            I am excited to apply my software development skills and experience to your team. As a soon-to-be Software Engineering graduate, I have a strong foundation in programming, system design, and problem-solving, with hands-on experience in mobile and web development.
 
-Throughout my studies, I have engaged in several projects that showcase my ability to build functional and impactful applications. My graduation project, Volo, is a Flutter-based social platform designed to connect NGOs with volunteers, allowing users to organize events, track engagement, and reward contributions through a rating and achievement system. This project emphasized my skills in Flutter, Dart, Firebase, and Agile methodologies, particularly Scrum and XP.
-
-Beyond my academic work, I have gained practical experience through an internship at the  EHS (Electronic Health Solutions) – Hakeem, where I contributed to the ERP system, working on real-world business processes and solutions. Additionally, I have been developing a swimming club billing system using Oracle APEX, which handles memberships, payments, and facility management for multiple clubs.
-
-To further solidify my expertise, I am currently taking the Oracle APEX Professional course from Oracle to enhance my backend and database development skills. I am also enrolled in the Amazon Junior Software Developer course , where I am sharpening my abilities in cloud-based software development and scalable system architecture.
-
-With my passion for technology, a strong work ethic, and the ability to adapt and learn quickly, I am eager to bring value to a team that thrives on innovation and excellence. I look forward to the opportunity to discuss how my background aligns with your organization’s goals.
-
-Thank you for your time and consideration. I would love the chance to connect and explore potential opportunities.
+            My graduation project, Volo, is a Flutter-based platform connecting NPOs with volunteers, integrating event management, engagement tracking, and achievement rewards. This project enhanced my expertise in Flutter, Dart, Firebase, and Agile methodologies (Scrum & XP).
+            
+            Beyond academics, my internship at EHS – Hakeem allowed me to contribute to an ERP system, working on real-world business processes. Additionally, I am developing a swimming club billing system using Oracle APEX, handling memberships, payments, and facility management. To further refine my skills, I am completing the Oracle APEX Professional course and the Amazon Junior Software Developer program, focusing on cloud-based and scalable system architecture.
+            
+            With a passion for technology, a strong work ethic, and the ability to adapt quickly, I am eager to contribute to a team that values innovation. I welcome the opportunity to discuss how my background aligns with your organization's goals.
+            
+            Thank you for your time and consideration—I look forward to connecting!
         </p>
     </div>
 
     <div class="social-icons">
         <a href="https://github.com/Ozaatreh" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/1024px-Octicons-mark-github.svg.png" alt="GitHub Logo" width="30" height="30">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/1024px-Octicons-mark-github.svg.png"
+                alt="GitHub Logo" width="30" height="30">
         </a>
         <a href="https://www.linkedin.com/in/omar-zaatreh-9949a8286/" target="_blank">
-            <img src="https://pngimg.com/uploads/linkedIn/linkedIn_PNG26.png" alt="LinkedIn Logo" width="30" height="30">
+            <img src="https://www.clipartmax.com/png/full/141-1417613_linkedin-icon-font-awesome-linkedin-icon.png"
+                alt="LinkedIn Logo" width="22" height="22">
         </a>
-        <a href="cv.pdf" target="_blank">CV</a>
+        <a href="https://github.com/Ozaatreh/Certificats_webPage/blob/main/OMAR_CV%20(4).pdf" target="_blank">
+            <img src="https://www.clipartmax.com/png/full/33-330616_job-search-symbol-of-a-hand-holding-cv-vector-cv-logo.png"
+                alt="CV" width="22" height="30">
+        </a>
     </div>
-    
+
 
 </body>
+
 </html>
