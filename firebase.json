@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "site": "omar-portfolio-59635-54f83",
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
