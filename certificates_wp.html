@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omar Zaatreh - Portfolio</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Title */
+        h1 {
+            margin-top: 40px;
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Certificate Grid */
+        .certificate-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px auto;
+            max-width: 1200px;
+            padding: 20px;
+        }
+
+        /* Individual Certificate Card */
+        .certificate {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            max-width: 320px;
+            text-align: center;
+        }
+
+        .certificate:hover {
+            transform: translateY(-8px);
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Certificate Title */
+        .certificate h2 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        /* Certificate Image */
+        .certificate img {
+            width: 100%;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .certificate img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Cover Letter */
+        .cover-letter {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        /* Social Icons */
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 40px;
+            padding-bottom: 20px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Omar Zaatreh</h1>
+    <h2>Software Engineer</h2>
+
+    <div class="certificate-container">
+        <div class="certificate">
+            <h2>Flutter & Dart Certificate</h2>
+            <a href="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/Omar%20Murad%20Zaatreh%20(1).jpg" target="_blank">
+                <img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/Omar%20Murad%20Zaatreh%20(1).jpg" alt="Flutter & Dart Certificate">
+            </a>
+        </div>
+        <div class="certificate">
+            <h2>CCNA Certificate</h2>
+            <a href="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/ccna_certificate.jpg" target="_blank">
+                <img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/ccna_certificate.jpg" alt="CCNA Certificate">
+            </a>
+        </div>
+        <div class="certificate">
+            <h2>Oracle SQL Databases Specialization</h2>
+            <a href="https://www.coursera.org/account/accomplishments/specialization/61SVAY1E412V" target="_blank">
+                <img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/sql_pic.png" alt="Oracle SQL Certificate">
+            </a>
+        </div>
+        <div class="certificate">
+            <h2>Data Visualization and Dashboards with Excel and Cognos</h2>
+            <a href="https://coursera.org/verify/WOGUB7MK5WBE" target="_blank">
+                <img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/ibm_vis.png" alt="IBM Business Analysis Certificate">
+            </a>
+        </div>
+        <div class="certificate">
+            <h2>Excel Basics for Data Analysis</h2>
+            <a href="https://www.coursera.org/account/accomplishments/certificate/SZYMFQSWY1RO" target="_blank">
+                <img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/ibm_b_anlys.png" alt="IBM Business Analysis Certificate">
+            </a>
+        </div>
+    </div>
+
+    <div class="cover-letter">
+        <h2>About Me</h2>
+        <p>
+            I am writing to express my passion for software development and my eagerness to contribute my skills and experience to your team. As a soon-to-be graduate in Software Engineering, I have developed a strong foundation in programming, system design, and problem-solving. My academic journey has been enriched by hands-on experience in various technologies, particularly in mobile and web development.
+
+Throughout my studies, I have engaged in several projects that showcase my ability to build functional and impactful applications. My graduation project, Volo, is a Flutter-based social platform designed to connect NGOs with volunteers, allowing users to organize events, track engagement, and reward contributions through a rating and achievement system. This project emphasized my skills in Flutter, Dart, Firebase, and Agile methodologies, particularly Scrum and XP.
+
+Beyond my academic work, I have gained practical experience through an internship at the  EHS (Electronic Health Solutions) – Hakeem, where I contributed to the ERP system, working on real-world business processes and solutions. Additionally, I have been developing a swimming club billing system using Oracle APEX, which handles memberships, payments, and facility management for multiple clubs.
+
+To further solidify my expertise, I am currently taking the Oracle APEX Professional course from Oracle to enhance my backend and database development skills. I am also enrolled in the Amazon Junior Software Developer course , where I am sharpening my abilities in cloud-based software development and scalable system architecture.
+
+With my passion for technology, a strong work ethic, and the ability to adapt and learn quickly, I am eager to bring value to a team that thrives on innovation and excellence. I look forward to the opportunity to discuss how my background aligns with your organization’s goals.
+
+Thank you for your time and consideration. I would love the chance to connect and explore potential opportunities.
+        </p>
+    </div>
+
+    <div class="social-icons">
+        <a href="https://github.com/Ozaatreh" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/1024px-Octicons-mark-github.svg.png" alt="GitHub Logo" width="30" height="30">
+        </a>
+        <a href="https://www.linkedin.com/in/omar-zaatreh-9949a8286/" target="_blank">
+            <img src="https://pngimg.com/uploads/linkedIn/linkedIn_PNG26.png" alt="LinkedIn Logo" width="30" height="30">
+        </a>
+        <a href="cv.pdf" target="_blank">CV</a>
+    </div>
+    
+
+</body>
+</html>
