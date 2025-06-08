@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+ 
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -20,7 +21,53 @@
                 background-position: 0% 50%;
             }
         }
+        /* body {
+      margin: 0;
+      background-color: black;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    } */
 
+    .eye {
+      width: 100px;
+      height: 100px;
+      background: white;
+      border-radius: 50%;
+      position: absolute;
+      margin: 20px;
+      display: inline-block;
+    }
+
+    .pupil {
+      width: 35px;
+      height: 35px;
+      background: darkblue;
+      border-radius: 50%;
+      position: absolute;
+      top: 35px;
+      left: 35px;
+      transition: all 0.05s linear;
+    }
+
+    .eyes-container {
+      display: flex;
+      justify-content: left;
+      /* align-items: start; */
+      position: absolute;
+      top: 20px;   /* distance from top */
+      left: 140px;  /* distance from left */
+    }
+    .eyes-container2 {
+      display: flex;
+      justify-content: left;
+      position: absolute;
+      top: 20px;   /* distance from top */
+      left: 20px;  /* distance from left */
+      /* align-items: flex-end; */
+    }
         /* General Styling */
         body {
             font-family: 'Poppins', sans-serif;
@@ -276,7 +323,35 @@
     <h1>Omar Zaatreh</h1>
     <h2 style="animation: colorFade 5s infinite alternate ease-in-out;">Software Engineer</h2>
     
-    
+   
+  <div class="eyes-container">
+    <div class="eye"><div class="pupil"></div></div>
+    <div class="eye"><div class="pupil"></div></div>
+  </div>
+
+  <div class="eyes-container2">
+    <div class="eye"><div class="pupil"></div></div>
+    <div class="eye"><div class="pupil"></div></div>
+  </div>
+  <script>
+    const eyes = document.querySelectorAll('.eye');
+
+    document.addEventListener('mousemove', (e) => {
+      eyes.forEach((eye) => {
+        const pupil = eye.querySelector('.pupil');
+        const rect = eye.getBoundingClientRect();
+        const eyeCenterX = rect.left + rect.width / 2;
+        const eyeCenterY = rect.top + rect.height / 2;
+        const angle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX);
+        const radius = 20;
+
+        const pupilX = radius * Math.cos(angle);
+        const pupilY = radius * Math.sin(angle);
+
+        pupil.style.transform = `translate(${pupilX}px, ${pupilY}px)`;
+      });
+    });
+  </script> 
         
 
     <div class="certificate-container">
@@ -405,3 +480,4 @@ Driven by curiosity and a love for continuous learning, I’m eager to join a te
 </body>
 
 </html>
+ 
