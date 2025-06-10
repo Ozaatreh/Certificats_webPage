@@ -1,5 +1,4 @@
- 
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -21,53 +20,41 @@
                 background-position: 0% 50%;
             }
         }
-        /* body {
-      margin: 0;
-      background-color: black;
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    } */
 
-    .eye {
-      width: 100px;
-      height: 100px;
-      background: white;
-      border-radius: 50%;
-      position: absolute;
-      margin: 20px;
-      display: inline-block;
-    }
+        /* Eyes styling - made responsive */
+        .eye {
+            width: 5vw;
+            height: 5vw;
+            min-width: 40px;
+            min-height: 40px;
+            max-width: 80px;
+            max-height: 80px;
+            background: white;
+            border-radius: 50%;
+            position: relative;
+            margin: 5px;
+            display: inline-block;
+        }
 
-    .pupil {
-      width: 35px;
-      height: 35px;
-      background: darkblue;
-      border-radius: 50%;
-      position: absolute;
-      top: 35px;
-      left: 35px;
-      transition: all 0.05s linear;
-    }
+        .pupil {
+            width: 30%;
+            height: 30%;
+            background: darkblue;
+            border-radius: 50%;
+            position: absolute;
+            top: 35%;
+            left: 35%;
+            transition: all 0.05s linear;
+        }
 
-    .eyes-container {
-      display: flex;
-      justify-content: left;
-      /* align-items: start; */
-      position: absolute;
-      top: 20px;   /* distance from top */
-      left: 140px;  /* distance from left */
-    }
-    .eyes-container2 {
-      display: flex;
-      justify-content: left;
-      position: absolute;
-      top: 20px;   /* distance from top */
-      left: 20px;  /* distance from left */
-      /* align-items: flex-end; */
-    }
+        .eyes-container {
+            display: flex;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+        }
+
         /* General Styling */
         body {
             font-family: 'Poppins', sans-serif;
@@ -78,7 +65,7 @@
             text-align: center;
             margin: 0;
             padding: 0;
-
+            position: relative;
         }
 
         /* Title */
@@ -89,7 +76,6 @@
             text-transform: uppercase;
             letter-spacing: 2px;
         }
-
 
         @keyframes colorFade {
             0% {
@@ -127,19 +113,15 @@
                 border: 2px solid #f4d03f;
             }
 
-            /* Gold */
             50% {
                 box-shadow: 0px 4px 15px rgba(77, 208, 225, 0.7);
                 border: 2px solid #4dd0e1;
             }
 
-            /* Cyan */
             100% {
                 box-shadow: 0px 4px 10px rgba(244, 208, 63, 0.6);
                 border: 2px solid #f4d03f;
             }
-
-            /* Back to Gold */
         }
 
         .certificate {
@@ -203,19 +185,15 @@
                 border: 2px solid #f4d03f;
             }
 
-            /* Gold */
             50% {
                 box-shadow: 0px 4px 15px rgba(77, 208, 225, 0.7);
                 border: 2px solid #4dd0e1;
             }
 
-            /* Cyan */
             100% {
                 box-shadow: 0px 4px 10px rgba(244, 208, 63, 0.6);
                 border: 2px solid #f4d03f;
             }
-
-            /* Back to Gold */
         }
 
         .cover-letter {
@@ -237,17 +215,13 @@
                 filter: drop-shadow(0 0 5px #f4d03f);
             }
 
-            /* Gold Glow */
             50% {
                 filter: drop-shadow(0 0 10px #4dd0e1);
             }
 
-            /* Cyan Glow */
             100% {
                 filter: drop-shadow(0 0 5px #f4d03f);
             }
-
-            /* Back to Gold Glow */
         }
 
         .social-icons a img {
@@ -281,16 +255,15 @@
 
         /* Circular Profile Image */
         .profile-image {
-            width: 350px; /* set a fixed size instead of using vmin */
+            width: 350px;
             height: 350px;
-            object-fit: cover; /* ensures the image fills the circle properly */
+            object-fit: cover;
             border-radius: 50%;
             border: 1px solid white;
             box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.5);
             transition: transform 0.3s ease-in-out;
             animation: glowEffect 3s infinite alternate ease-in-out;
         }
-
 
         /* Animation Effect */
         @keyframes glowEffect {
@@ -311,10 +284,61 @@
         .profile-image:hover {
             transform: scale(1.05);
         }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+                margin-top: 60px;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .profile-image {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .certificate {
+                max-width: 90%;
+            }
+            
+            .cover-letter {
+                margin: 20px;
+                padding: 15px;
+            }
+            
+            .cover-letter p {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .profile-image {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .eye {
+                min-width: 30px;
+                min-height: 30px;
+            }
+        }
     </style>
 </head>
 
 <body>
+    <div class="eyes-container">
+        <div class="eye"><div class="pupil"></div></div>
+        <div class="eye"><div class="pupil"></div></div>
+    </div>
+
     <div class="profile-container">
         <img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/omar.JPG"
             alt="Omar Zaatreh" class="profile-image">
@@ -322,37 +346,26 @@
 
     <h1>Omar Zaatreh</h1>
     <h2 style="animation: colorFade 5s infinite alternate ease-in-out;">Software Engineer</h2>
-    
-   
-  <div class="eyes-container">
-    <div class="eye"><div class="pupil"></div></div>
-    <div class="eye"><div class="pupil"></div></div>
-  </div>
 
-  <div class="eyes-container2">
-    <div class="eye"><div class="pupil"></div></div>
-    <div class="eye"><div class="pupil"></div></div>
-  </div>
-  <script>
-    const eyes = document.querySelectorAll('.eye');
+    <script>
+        const eyes = document.querySelectorAll('.eye');
 
-    document.addEventListener('mousemove', (e) => {
-      eyes.forEach((eye) => {
-        const pupil = eye.querySelector('.pupil');
-        const rect = eye.getBoundingClientRect();
-        const eyeCenterX = rect.left + rect.width / 2;
-        const eyeCenterY = rect.top + rect.height / 2;
-        const angle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX);
-        const radius = 20;
+        document.addEventListener('mousemove', (e) => {
+            eyes.forEach((eye) => {
+                const pupil = eye.querySelector('.pupil');
+                const rect = eye.getBoundingClientRect();
+                const eyeCenterX = rect.left + rect.width / 2;
+                const eyeCenterY = rect.top + rect.height / 2;
+                const angle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX);
+                const radius = Math.min(rect.width, rect.height) * 0.2;
 
-        const pupilX = radius * Math.cos(angle);
-        const pupilY = radius * Math.sin(angle);
+                const pupilX = radius * Math.cos(angle);
+                const pupilY = radius * Math.sin(angle);
 
-        pupil.style.transform = `translate(${pupilX}px, ${pupilY}px)`;
-      });
-    });
-  </script> 
-        
+                pupil.style.transform = `translate(${pupilX}px, ${pupilY}px)`;
+            });
+        });
+    </script> 
 
     <div class="certificate-container">
         <div class="certificate">
@@ -450,7 +463,7 @@ During my internship at EHS – Hakeem, I worked in the ERP department, contribu
 
 To deepen my skills, I earned the Oracle APEX Cloud Developer Certified Professional certification and am completing the Amazon Junior Software Developer program, focusing on scalable, cloud-based architectures.
 
-Driven by curiosity and a love for continuous learning, I’m eager to join a team that values innovation, clean code, and meaningful impact. Let’s build something great together!
+Driven by curiosity and a love for continuous learning, I'm eager to join a team that values innovation, clean code, and meaningful impact. Let's build something great together!
         </p>
     </div>
 
@@ -468,9 +481,5 @@ Driven by curiosity and a love for continuous learning, I’m eager to join a te
                 alt="CV" width="22" height="30">
         </a>
     </div>
-
-
 </body>
-
 </html>
- 
