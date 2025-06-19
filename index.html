@@ -6,6 +6,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Omar Zaatreh - Portfolio</title>
     <style>
+        /* Replace the .pupil.star styles with this */
+/* Updated Professional Star Pupil Effect */
+.pupil.star {
+    background: transparent;
+    width: 40%;
+    height: 40%;
+    position: relative;
+}
+
+.pupil.star::before,
+.pupil.star::after {
+    content: "";
+    position: absolute;
+    background: linear-gradient(135deg, #FFD700 0%, #FFEA8D 100%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 4px rgba(255, 215, 0, 0.5);
+    border-radius: 1px;
+    transition: all 0.3s ease;
+}
+
+/* Vertical bar - slightly thinner */
+.pupil.star::before {
+    width: 11%;
+    height: 100%;
+    border-radius: 2px;
+}
+
+/* Horizontal bar - slightly thinner */
+.pupil.star::after {
+    width: 75%;
+    height: 11%;
+    border-radius: 2px;
+}
+
+/* Subtle pulse animation */
+@keyframes professional-pulse {
+    0% { 
+        opacity: 0.9;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.08);
+    }
+    100% {
+        opacity: 0.9;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.pupil.star::before,
+.pupil.star::after {
+    animation: professional-pulse 1.5s infinite ease-in-out;
+}
         /* Animated Gradient Background */
         @keyframes animatedGradient {
             0% {
@@ -348,23 +404,37 @@
     <h2 style="animation: colorFade 5s infinite alternate ease-in-out;">Software Engineer</h2>
 
     <script>
-        const eyes = document.querySelectorAll('.eye');
+       const eyes = document.querySelectorAll('.eye');
+const profileImage = document.querySelector('.profile-image');
 
-        document.addEventListener('mousemove', (e) => {
-            eyes.forEach((eye) => {
-                const pupil = eye.querySelector('.pupil');
-                const rect = eye.getBoundingClientRect();
-                const eyeCenterX = rect.left + rect.width / 2;
-                const eyeCenterY = rect.top + rect.height / 2;
-                const angle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX);
-                const radius = Math.min(rect.width, rect.height) * 0.2;
+document.addEventListener('mousemove', (e) => {
+    eyes.forEach((eye) => {
+        const pupil = eye.querySelector('.pupil');
+        const rect = eye.getBoundingClientRect();
+        const eyeCenterX = rect.left + rect.width / 2;
+        const eyeCenterY = rect.top + rect.height / 2;
+        const angle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX);
+        const radius = Math.min(rect.width, rect.height) * 0.2;
 
-                const pupilX = radius * Math.cos(angle);
-                const pupilY = radius * Math.sin(angle);
+        const pupilX = radius * Math.cos(angle);
+        const pupilY = radius * Math.sin(angle);
 
-                pupil.style.transform = `translate(${pupilX}px, ${pupilY}px)`;
-            });
-        });
+        pupil.style.transform = `translate(${pupilX}px, ${pupilY}px)`;
+    });
+});
+
+// Add mouse enter/leave events for the profile image
+profileImage.addEventListener('mouseenter', () => {
+    document.querySelectorAll('.pupil').forEach(pupil => {
+        pupil.classList.add('star');
+    });
+});
+
+profileImage.addEventListener('mouseleave', () => {
+    document.querySelectorAll('.pupil').forEach(pupil => {
+        pupil.classList.remove('star');
+    });
+});
     </script> 
 
     <div class="certificate-container">
