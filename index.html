@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    :root{--bg:#020617;--card:rgba(255,255,255,.065);--card-strong:rgba(255,255,255,.1);--border:rgba(148,163,184,.24);--muted:#94a3b8;--text-soft:#cbd5e1;--pink:#ec4899;--cyan:#38bdf8;--violet:#8b5cf6}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:radial-gradient(circle at 18% 12%,rgba(56,189,248,.13),transparent 28%),radial-gradient(circle at 82% 18%,rgba(236,72,153,.12),transparent 32%),radial-gradient(circle at 50% 95%,rgba(139,92,246,.12),transparent 38%),#020617;color:#fff;overflow-x:hidden}body::before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(circle at 50% 20%,black,transparent 72%);z-index:0}a{color:inherit}.container{position:relative;z-index:1;width:min(1120px,90%);margin:auto}.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(380px,.95fr);align-items:center;min-height:100vh;gap:clamp(32px,5vw,70px);padding:40px 0}.badge{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid var(--border);border-radius:999px;background:rgba(15,23,42,.55);color:var(--text-soft);font-size:14px;margin-bottom:22px;backdrop-filter:blur(14px)}.badge-dot{width:8px;height:8px;border-radius:50%;background:var(--pink);box-shadow:0 0 18px var(--pink)}h1{font-size:clamp(44px,7vw,76px);line-height:.95;letter-spacing:-.07em;margin:0;font-weight:900}.gradient-text{display:block;margin-top:8px;background:linear-gradient(120deg,#fff,#93c5fd 44%,#f0abfc 80%);-webkit-background-clip:text;background-clip:text;color:transparent}.subtitle{color:var(--text-soft);margin-top:24px;line-height:1.75;font-size:1.08rem;max-width:590px}.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 18px;border-radius:999px;text-decoration:none;font-weight:800;color:#fff;border:1px solid var(--border);background:rgba(255,255,255,.07);transition:transform .25s ease,border-color .25s ease,background .25s ease}.btn:hover{transform:translateY(-3px);border-color:rgba(236,72,153,.65);background:rgba(255,255,255,.11)}.btn-primary{border:0;background:linear-gradient(135deg,var(--pink),var(--violet),var(--cyan));box-shadow:0 20px 55px rgba(236,72,153,.22)}.particle-box{position:relative;height:540px;border-radius:34px;overflow:hidden;border:1px solid rgba(148,163,184,.28);background:radial-gradient(circle at 50% 45%,rgba(236,72,153,.18),transparent 34%),radial-gradient(circle at 70% 22%,rgba(56,189,248,.15),transparent 30%),linear-gradient(135deg,rgba(15,23,42,.9),rgba(2,6,23,.98));box-shadow:0 30px 120px rgba(2,6,23,.55),inset 0 0 80px rgba(236,72,153,.08);isolation:isolate}.particle-box::before{content:"";position:absolute;inset:-40%;background:radial-gradient(circle,rgba(236,72,153,.13),transparent 32%),radial-gradient(circle at 70% 40%,rgba(56,189,248,.12),transparent 30%);filter:blur(40px);animation:ambientGlow 12s ease-in-out infinite alternate;z-index:0}@keyframes ambientGlow{from{transform:translate3d(-3%,-2%,0) rotate(0deg);opacity:.68}to{transform:translate3d(3%,2%,0) rotate(8deg);opacity:.95}}canvas{position:relative;z-index:1;width:100%;height:100%;display:block;cursor:pointer}.particle-hint{position:absolute;left:24px;bottom:24px;max-width:300px;padding:14px 16px;border-radius:18px;background:rgba(2,6,23,.72);border:1px solid rgba(148,163,184,.28);backdrop-filter:blur(14px);color:#fff;pointer-events:none;z-index:2;box-shadow:0 18px 45px rgba(0,0,0,.25)}.particle-hint strong{display:block;margin-bottom:6px;font-size:.95rem}.particle-hint span{color:var(--text-soft);font-size:.86rem;line-height:1.5}.section{padding:80px 0}.section h2{font-size:clamp(34px,5vw,54px);letter-spacing:-.06em;margin:0 0 18px}.section-lead{color:var(--text-soft);line-height:1.8;max-width:780px;margin:0 0 30px}.card{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:28px;margin-bottom:20px;box-shadow:0 18px 55px rgba(2,6,23,.24);backdrop-filter:blur(18px);transition:transform .25s ease,border-color .25s ease,background .25s ease}.card:hover{transform:translateY(-6px);border-color:rgba(236,72,153,.5);background:var(--card-strong)}.card h3{margin:0 0 8px;font-size:1.15rem}.date{color:var(--muted);font-size:14px;margin-bottom:14px;font-weight:700}ul{padding-left:18px;margin:0;color:var(--text-soft);line-height:1.75}.cert-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:28px}.cert-card img{width:100%;aspect-ratio:16/11;object-fit:cover;display:block;border-radius:16px;border:1px solid rgba(255,255,255,.12);margin-top:12px}.footer-note{padding:50px 0 70px;color:var(--muted);text-align:center;font-size:.95rem}@media(max-width:900px){.hero{grid-template-columns:1fr;padding-top:70px}.particle-box{height:430px}.cert-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.container{width:min(100% - 28px,1120px)}.particle-box{height:360px;border-radius:24px}.particle-hint{left:16px;right:16px;bottom:16px;max-width:none}.cert-grid{grid-template-columns:1fr}}
+    :root{--bg:#020617;--card:rgba(255,255,255,.065);--card-strong:rgba(255,255,255,.1);--border:rgba(148,163,184,.24);--muted:#94a3b8;--text-soft:#cbd5e1;--pink:#ec4899;--cyan:#38bdf8;--violet:#8b5cf6}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:radial-gradient(circle at 18% 12%,rgba(56,189,248,.13),transparent 28%),radial-gradient(circle at 82% 18%,rgba(236,72,153,.12),transparent 32%),radial-gradient(circle at 50% 95%,rgba(139,92,246,.12),transparent 38%),#020617;color:#fff;overflow-x:hidden}body::before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(circle at 50% 20%,black,transparent 72%);z-index:0}a{color:inherit}.container{position:relative;z-index:1;width:min(1120px,90%);margin:auto}.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(380px,.95fr);align-items:center;min-height:100vh;gap:clamp(32px,5vw,70px);padding:40px 0}.badge{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid var(--border);border-radius:999px;background:rgba(15,23,42,.55);color:var(--text-soft);font-size:14px;margin-bottom:22px;backdrop-filter:blur(14px)}.badge-dot{width:8px;height:8px;border-radius:50%;background:var(--pink);box-shadow:0 0 18px var(--pink)}h1{font-size:clamp(44px,7vw,76px);line-height:.95;letter-spacing:-.07em;margin:0;font-weight:900}.gradient-text{display:block;margin-top:8px;background:linear-gradient(120deg,#fff,#93c5fd 44%,#f0abfc 80%);-webkit-background-clip:text;background-clip:text;color:transparent}.subtitle{color:var(--text-soft);margin-top:24px;line-height:1.75;font-size:1.08rem;max-width:590px}.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 18px;border-radius:999px;text-decoration:none;font-weight:800;color:#fff;border:1px solid var(--border);background:rgba(255,255,255,.07);transition:transform .25s ease,border-color .25s ease,background .25s ease}.btn:hover{transform:translateY(-3px);border-color:rgba(236,72,153,.65);background:rgba(255,255,255,.11)}.btn-primary{border:0;background:linear-gradient(135deg,var(--pink),var(--violet),var(--cyan));box-shadow:0 20px 55px rgba(236,72,153,.22)}.particle-box{position:relative;height:540px;border-radius:34px;overflow:hidden;border:1px solid rgba(148,163,184,.28);background:radial-gradient(circle at 50% 45%,rgba(236,72,153,.18),transparent 34%),radial-gradient(circle at 70% 22%,rgba(56,189,248,.15),transparent 30%),linear-gradient(135deg,rgba(15,23,42,.9),rgba(2,6,23,.98));box-shadow:0 30px 120px rgba(2,6,23,.55),inset 0 0 80px rgba(236,72,153,.08);isolation:isolate}.particle-box::before{content:"";position:absolute;inset:-25%;background:radial-gradient(circle,rgba(236,72,153,.1),transparent 32%),radial-gradient(circle at 70% 40%,rgba(56,189,248,.09),transparent 30%);filter:blur(26px);z-index:0}canvas{position:relative;z-index:1;width:100%;height:100%;display:block;cursor:pointer}.particle-hint{position:absolute;left:24px;bottom:24px;max-width:300px;padding:14px 16px;border-radius:18px;background:rgba(2,6,23,.72);border:1px solid rgba(148,163,184,.28);backdrop-filter:blur(14px);color:#fff;pointer-events:none;z-index:2;box-shadow:0 18px 45px rgba(0,0,0,.25)}.particle-hint strong{display:block;margin-bottom:6px;font-size:.95rem}.particle-hint span{color:var(--text-soft);font-size:.86rem;line-height:1.5}.section{padding:80px 0}.section h2{font-size:clamp(34px,5vw,54px);letter-spacing:-.06em;margin:0 0 18px}.section-lead{color:var(--text-soft);line-height:1.8;max-width:780px;margin:0 0 30px}.card{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:28px;margin-bottom:20px;box-shadow:0 18px 55px rgba(2,6,23,.24);backdrop-filter:blur(18px);transition:transform .25s ease,border-color .25s ease,background .25s ease}.card:hover{transform:translateY(-6px);border-color:rgba(236,72,153,.5);background:var(--card-strong)}.card h3{margin:0 0 8px;font-size:1.15rem}.date{color:var(--muted);font-size:14px;margin-bottom:14px;font-weight:700}ul{padding-left:18px;margin:0;color:var(--text-soft);line-height:1.75}.cert-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:28px}.cert-card img{width:100%;aspect-ratio:16/11;object-fit:cover;display:block;border-radius:16px;border:1px solid rgba(255,255,255,.12);margin-top:12px}.footer-note{padding:50px 0 70px;color:var(--muted);text-align:center;font-size:.95rem}@media(max-width:900px){.hero{grid-template-columns:1fr;padding-top:70px}.particle-box{height:430px}.cert-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.container{width:min(100% - 28px,1120px)}.particle-box{height:360px;border-radius:24px}.particle-hint{left:16px;right:16px;bottom:16px;max-width:none}.cert-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -21,7 +21,7 @@
         <p class="subtitle">Application Developer at Petra Engineering, building enterprise systems with Angular, ASP.NET (C#), SQL Server, REST APIs, and Power BI. I work across frontend, backend, database, and reporting layers to deliver reliable business applications and data-driven solutions.</p>
         <div class="cta-row"><a class="btn btn-primary" href="#experience">View Experience</a><a class="btn" href="#certificates">Certifications</a><a class="btn" href="https://github.com/Ozaatreh" target="_blank" rel="noreferrer">GitHub</a><a class="btn" href="https://www.linkedin.com/in/omar-zaatreh/" target="_blank" rel="noreferrer">LinkedIn</a></div>
       </div>
-      <div class="particle-box"><canvas id="canvas"></canvas><div class="particle-hint"><strong>Interactive particle identity</strong><span>Optimized and smoother. Move your mouse gently, or click to reveal the next skill.</span></div></div>
+      <div class="particle-box"><canvas id="canvas"></canvas><div class="particle-hint"><strong>Interactive particle identity</strong><span>Ultra-light version. Click to reveal the next skill.</span></div></div>
     </section>
     <section class="section" id="experience"><h2>Experience</h2><p class="section-lead">Practical experience in enterprise applications, backend APIs, database operations, reporting, ERP workflows, and business-focused software delivery.</p><div class="card"><h3>Application Developer — Petra Engineering</h3><div class="date">Nov 2025 – Present</div><ul><li>Develop and maintain enterprise Angular applications used in real business operations.</li><li>Build ASP.NET (C#) APIs and backend features for internal systems.</li><li>Work with SQL Server and SSMS to write queries, stored procedures, and reporting logic.</li><li>Create Power BI dashboards and reporting views to support operational decision-making.</li><li>Collaborate across frontend, backend, database, and reporting layers to deliver maintainable business solutions.</li></ul></div><div class="card"><h3>ERP Intern — EHS (Hakeem)</h3><div class="date">Feb 2025 – Apr 2025</div><ul><li>Worked inside the ERP department on real-world enterprise workflows.</li><li>Supported business process automation and backend-oriented application tasks.</li><li>Completed Oracle APEX professional training and strengthened database development skills.</li></ul></div></section>
     <section class="section" id="certificates"><h2>Certifications</h2><p class="section-lead">Selected certifications covering software development, cloud, databases, BI, networking, and agile delivery.</p><div class="cert-grid"><div class="card cert-card"><h3>Flutter & Dart Certificate</h3><a href="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/Omar%20Murad%20Zaatreh%20(1).jpg" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/Omar%20Murad%20Zaatreh%20(1).jpg" alt="Flutter and Dart Certificate"></a></div><div class="card cert-card"><h3>Oracle APEX Cloud Developer Certified Professional</h3><a href="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/Oracle_certificate.png" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/Oracle_certificate.png" alt="Oracle APEX Certificate"></a></div><div class="card cert-card"><h3>CCNA Certificate</h3><a href="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/CCNA.jpg" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/CCNA.jpg" alt="CCNA Certificate"></a></div><div class="card cert-card"><h3>Oracle SQL Databases Specialization</h3><a href="https://www.coursera.org/account/accomplishments/specialization/61SVAY1E412V" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/sql_pic.png" alt="Oracle SQL Certificate"></a></div><div class="card cert-card"><h3>AWS Cloud Practitioner Essentials</h3><a href="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/AWS%20Cloud%20Practitioner%20Essentials.png" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/AWS%20Cloud%20Practitioner%20Essentials.png" alt="AWS Cloud Practitioner Essentials"></a></div><div class="card cert-card"><h3>.NET Full Stack Foundation</h3><a href="https://coursera.org/share/271011d95397faea6e39675ae60324f0" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/.Net%20Full%20Stack%20Foundation.png" alt=".NET Full Stack Foundation"></a></div></div></section>
@@ -30,104 +30,81 @@
   <script>
     const canvas=document.getElementById('canvas');
     const ctx=canvas.getContext('2d',{alpha:true});
-    let particles=[],width=0,height=0,index=0,lastChange=Date.now(),lastFrame=0,rafId=null;
-    const mouse={x:null,y:null,radius:58};
-    const changeInterval=5600;
+    let width=0,height=0,index=0,timer=null;
     const words=['Omar Zaatreh','Application Developer','Angular + .NET','SQL Server','Power BI','REST APIs','Enterprise Systems'];
-    const isSmallScreen=()=>window.innerWidth<560;
-    const prefersReducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const targetFps=prefersReducedMotion?18:30;
-    const frameDelay=1000/targetFps;
 
-    function resize(){
-      const dpr=Math.min(window.devicePixelRatio||1,1.15);
+    function setup(){
       width=canvas.parentElement.clientWidth;
       height=canvas.parentElement.clientHeight;
-      canvas.width=Math.floor(width*dpr);
-      canvas.height=Math.floor(height*dpr);
+      canvas.width=width;
+      canvas.height=height;
       canvas.style.width=width+'px';
       canvas.style.height=height+'px';
-      ctx.setTransform(dpr,0,0,dpr,0,0);
-      buildText(words[index],true);
+      drawParticleText(words[index]);
     }
 
-    function getFontSize(text){
-      if(width<480)return Math.min(width/Math.max(text.length*.48,8),40);
-      return Math.min(width/Math.max(text.length*.44,7),68);
+    function fontSize(text){
+      if(width<480)return Math.min(width/Math.max(text.length*.5,8),38);
+      return Math.min(width/Math.max(text.length*.46,7),64);
     }
 
-    function buildText(text,immediate=false){
+    function drawBackground(){
+      ctx.clearRect(0,0,width,height);
+      const glow=ctx.createRadialGradient(width/2,height/2,10,width/2,height/2,width*.72);
+      glow.addColorStop(0,'rgba(236,72,153,.14)');
+      glow.addColorStop(.48,'rgba(56,189,248,.055)');
+      glow.addColorStop(1,'rgba(2,6,23,0)');
+      ctx.fillStyle=glow;
+      ctx.fillRect(0,0,width,height);
+    }
+
+    function drawParticleText(text){
+      drawBackground();
       const temp=document.createElement('canvas');
       const tctx=temp.getContext('2d',{willReadFrequently:true});
       temp.width=width;temp.height=height;
-      const fontSize=getFontSize(text);
-      tctx.font=`900 ${fontSize}px Inter, Arial, sans-serif`;
-      tctx.textAlign='center';tctx.textBaseline='middle';tctx.fillStyle='#fff';
-      tctx.shadowBlur=1;tctx.shadowColor='#fff';
+      const size=fontSize(text);
+      tctx.font=`900 ${size}px Inter, Arial, sans-serif`;
+      tctx.textAlign='center';
+      tctx.textBaseline='middle';
+      tctx.fillStyle='#fff';
       tctx.fillText(text,width/2,height/2);
       const data=tctx.getImageData(0,0,width,height).data;
-      const targets=[];
-      const gap=isSmallScreen()?8:7;
+      const gap=width<560?8:7;
+      ctx.save();
+      ctx.globalCompositeOperation='lighter';
+      ctx.shadowBlur=7;
+      ctx.shadowColor='rgba(236,72,153,.55)';
       for(let y=0;y<height;y+=gap){
         for(let x=0;x<width;x+=gap){
           const i=(y*width+x)*4;
-          if(data[i+3]>120)targets.push({x,y});
+          if(data[i+3]>130){
+            const pulse=((x+y+Date.now()/70)%14)/14;
+            ctx.beginPath();
+            ctx.fillStyle=`rgba(236,95,210,${.76+pulse*.2})`;
+            ctx.arc(x,y,width<560?1.45:1.7,0,Math.PI*2);
+            ctx.fill();
+          }
         }
       }
-      targets.sort((a,b)=>a.y-b.y||a.x-b.x);
-      const maxParticles=Math.min(targets.length,isSmallScreen()?760:1350);
-      particles=particles.slice(0,maxParticles);
-      while(particles.length<maxParticles){
-        particles.push({x:immediate?width/2:Math.random()*width,y:immediate?height/2:Math.random()*height,tx:width/2,ty:height/2,vx:0,vy:0,size:1,hueShift:Math.random(),alpha:.9});
-      }
-      particles.forEach((p,idx)=>{
-        const target=targets[Math.floor((idx/maxParticles)*targets.length)]||{x:width/2,y:height/2};
-        p.tx=target.x;p.ty=target.y;
-        p.size=isSmallScreen()?1.45:1.65;
-        p.alpha=.92;
-        if(immediate){p.x=p.tx+(Math.random()-.5)*10;p.y=p.ty+(Math.random()-.5)*10;}
-      });
+      ctx.restore();
     }
 
-    function nextWord(){index=(index+1)%words.length;buildText(words[index]);lastChange=Date.now();}
+    function nextWord(){
+      index=(index+1)%words.length;
+      drawParticleText(words[index]);
+    }
 
-    function draw(now=0){
-      rafId=requestAnimationFrame(draw);
-      if(now-lastFrame<frameDelay)return;
-      lastFrame=now;
-      ctx.clearRect(0,0,width,height);
-      const bgGlow=ctx.createRadialGradient(width/2,height/2,10,width/2,height/2,width*.7);
-      bgGlow.addColorStop(0,'rgba(236,72,153,0.11)');
-      bgGlow.addColorStop(.5,'rgba(56,189,248,0.045)');
-      bgGlow.addColorStop(1,'rgba(2,6,23,0)');
-      ctx.fillStyle=bgGlow;ctx.fillRect(0,0,width,height);
-      ctx.save();
-      ctx.globalCompositeOperation='lighter';
-      particles.forEach(p=>{
-        const dx=p.tx-p.x,dy=p.ty-p.y;
-        p.vx+=dx*.012;p.vy+=dy*.012;
-        if(mouse.x!==null){
-          const mx=p.x-mouse.x,my=p.y-mouse.y,dist=Math.hypot(mx,my);
-          if(dist<mouse.radius){const force=(mouse.radius-dist)/mouse.radius;const angle=Math.atan2(my,mx);p.vx+=Math.cos(angle)*force*1.1;p.vy+=Math.sin(angle)*force*1.1;}
-        }
-        p.vx*=.86;p.vy*=.86;p.x+=p.vx;p.y+=p.vy;
-        const r=230,g=95+Math.floor(p.hueShift*45),b=210+Math.floor(p.hueShift*30);
-        ctx.beginPath();
-        ctx.fillStyle=`rgba(${r},${g},${b},${p.alpha})`;
-        ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
-        ctx.fill();
-      });
-      ctx.restore();
-      if(Date.now()-lastChange>changeInterval)nextWord();
+    function startAutoChange(){
+      clearInterval(timer);
+      timer=setInterval(nextWord,5600);
     }
 
     let resizeTimer;
-    window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(resize,120);});
-    canvas.addEventListener('mousemove',e=>{const rect=canvas.getBoundingClientRect();mouse.x=e.clientX-rect.left;mouse.y=e.clientY-rect.top;},{passive:true});
-    canvas.addEventListener('mouseleave',()=>{mouse.x=null;mouse.y=null;});
-    canvas.addEventListener('click',nextWord);
-    document.addEventListener('visibilitychange',()=>{if(document.hidden&&rafId)cancelAnimationFrame(rafId);else if(!document.hidden){lastFrame=0;draw();}});
-    resize();draw();
+    window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(setup,180);});
+    canvas.addEventListener('click',()=>{nextWord();startAutoChange();});
+    document.addEventListener('visibilitychange',()=>{document.hidden?clearInterval(timer):startAutoChange();});
+    setup();startAutoChange();
   </script>
 </body>
 </html>
