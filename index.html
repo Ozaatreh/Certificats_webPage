@@ -9,6 +9,28 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
+    .skill-tooltip {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  max-width: 260px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(2,6,23,0.7);
+  border: 1px solid rgba(148,163,184,0.3);
+  backdrop-filter: blur(12px);
+  color: white;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  pointer-events: none;
+  opacity: 1;
+  transition: all 0.25s ease;
+}
+
+.skill-tooltip.hidden {
+  opacity: 0;
+  transform: translateY(10px);
+}
     :root {
       --bg: #050816;
       --bg-2: #07111f;
@@ -257,7 +279,9 @@
       </div>
 
       <div class="hero-visual" aria-label="Interactive AI core and data network hero">
-        <canvas id="networkCanvas"></canvas>
+        <canvas id="coreCanvas"></canvas>
+
+<div id="skillTooltip" class="skill-tooltip hidden"></div>
         <div class="visual-toggle">
           <button class="active" data-mode="ai">AI Core</button>
           <button data-mode="network">Network</button>
@@ -342,163 +366,147 @@
     </div>
   </footer>
 
-  <script type="module">
-    import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
+ <script type="module">
+import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 
-    const canvas = document.getElementById('networkCanvas');
-    const container = canvas.parentElement;
-    const visualLabel = document.getElementById('visualLabel');
-    const visualSubLabel = document.getElementById('visualSubLabel');
-    const pointer = new THREE.Vector2(0, 0);
-    let mode = 'ai';
-    let pulseTime = -10;
+const canvas = document.getElementById('coreCanvas');
+const tooltip = document.getElementById('skillTooltip');
 
-    const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x050816, 0.035);
-    const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
-    camera.position.set(0, 0, 18);
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 3));
-    renderer.outputColorSpace = THREE.SRGBColorSpace;
+const scene = new THREE.Scene();
 
-    const aiGroup = new THREE.Group();
-    const networkGroup = new THREE.Group();
-    scene.add(aiGroup, networkGroup);
+const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
+camera.position.z = 12;
 
-    const glowTexture = (() => {
-      const c = document.createElement('canvas'); c.width = c.height = 128;
-      const ctx = c.getContext('2d');
-      const g = ctx.createRadialGradient(64,64,0,64,64,64);
-      g.addColorStop(0,'rgba(255,255,255,1)'); g.addColorStop(.2,'rgba(120,220,255,.65)'); g.addColorStop(.55,'rgba(80,120,255,.18)'); g.addColorStop(1,'rgba(0,0,0,0)');
-      ctx.fillStyle = g; ctx.fillRect(0,0,128,128);
-      return new THREE.CanvasTexture(c);
-    })();
+const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    function buildAiCore() {
-      const count = 1300;
-      const positions = new Float32Array(count * 3);
-      const colors = new Float32Array(count * 3);
-      for (let i = 0; i < count; i++) {
-        const y = 1 - (i / (count - 1)) * 2;
-        const radius = Math.sqrt(1 - y * y);
-        const theta = i * Math.PI * (3 - Math.sqrt(5));
-        const wave = 1 + 0.055 * Math.sin(theta * 7);
-        positions[i*3] = Math.cos(theta) * radius * 5.3 * wave;
-        positions[i*3+1] = y * 5.3;
-        positions[i*3+2] = Math.sin(theta) * radius * 5.3 * wave;
-        const cyanBias = Math.max(0, Math.sin(theta * 2 + y * 4));
-        colors[i*3] = 0.55 + cyanBias * 0.2;
-        colors[i*3+1] = 0.72 + cyanBias * 0.28;
-        colors[i*3+2] = 1;
-      }
-      const geometry = new THREE.BufferGeometry();
-      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-      geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-      const material = new THREE.PointsMaterial({ size: 0.075, vertexColors: true, transparent: true, opacity: 0.88, blending: THREE.AdditiveBlending, depthWrite: false });
-      const points = new THREE.Points(geometry, material);
-      aiGroup.add(points);
+const root = new THREE.Group();
+scene.add(root);
 
-      const ringMat1 = new THREE.MeshBasicMaterial({ color: 0xe8f4ff, transparent: true, opacity: .65, blending: THREE.AdditiveBlending, depthWrite: false });
-      const ringMat2 = new THREE.MeshBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: .42, blending: THREE.AdditiveBlending, depthWrite: false });
-      const ring1 = new THREE.Mesh(new THREE.TorusGeometry(3.25, 0.035, 12, 180), ringMat1);
-      const ring2 = new THREE.Mesh(new THREE.TorusGeometry(2.1, 0.045, 12, 180), ringMat2);
-      ring1.rotation.set(1.2, 0.15, 0.45); ring1.position.set(1.25, 1.4, 1.7);
-      ring2.rotation.set(1.1, -0.25, -0.75); ring2.position.set(-1.35, -1.15, 1.2);
-      aiGroup.add(ring1, ring2);
+// ========================
+// YOUR SKILLS DATA
+// ========================
+const skills = [
+  {
+    name: "Angular + .NET",
+    desc: "Enterprise apps at Petra Engineering",
+    color: 0x38bdf8
+  },
+  {
+    name: "SQL Server",
+    desc: "Stored procedures, optimization, reporting",
+    color: 0x60a5fa
+  },
+  {
+    name: "Power BI",
+    desc: "Dashboards & business insights",
+    color: 0x8b5cf6
+  },
+  {
+    name: "REST APIs",
+    desc: "Backend services using ASP.NET",
+    color: 0x22c55e
+  },
+  {
+    name: "Flutter",
+    desc: "Volo platform + mobile apps",
+    color: 0xf59e0b
+  },
+  {
+    name: "Oracle APEX",
+    desc: "ERP systems at Hakeem",
+    color: 0xef4444
+  }
+];
 
-      const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTexture, color: 0x38bdf8, transparent: true, opacity: .22, blending: THREE.AdditiveBlending, depthWrite: false }));
-      sprite.scale.set(13, 13, 1);
-      aiGroup.add(sprite);
-      return { points, ring1, ring2, sprite };
-    }
+// ========================
+// CREATE CORE
+// ========================
+const core = new THREE.Mesh(
+  new THREE.SphereGeometry(0.8, 32, 32),
+  new THREE.MeshBasicMaterial({ color: 0xffffff })
+);
+root.add(core);
 
-    function buildNetwork() {
-      const nodes = [], edges = [];
-      const nodeGeo = new THREE.IcosahedronGeometry(0.38, 2);
-      for (let i = 0; i < 26; i++) {
-        const angle = (i / 26) * Math.PI * 2;
-        const r = 3 + (i % 4) * 1.3;
-        const mesh = new THREE.Mesh(nodeGeo, new THREE.MeshBasicMaterial({ color: i%3===0?0x38bdf8:i%3===1?0x8b5cf6:0x60a5fa, transparent:true, opacity:.85, blending:THREE.AdditiveBlending, depthWrite:false }));
-        mesh.position.set(Math.cos(angle)*r + (Math.random()-.5)*1.5, Math.sin(angle*1.3)*r*.65 + (Math.random()-.5)*1.5, (Math.random()-.5)*5);
-        mesh.userData.base = mesh.position.clone(); mesh.userData.phase = Math.random()*10;
-        networkGroup.add(mesh); nodes.push(mesh);
-      }
-      nodes.forEach((a, i) => {
-        const close = nodes.map((b,j)=>({j,d:a.position.distanceTo(b.position)})).filter(x=>x.j!==i).sort((x,y)=>x.d-y.d).slice(0,2);
-        close.forEach(({j}) => {
-          if (edges.some(e => (e.a===i&&e.b===j)||(e.a===j&&e.b===i))) return;
-          const line = new THREE.Line(new THREE.BufferGeometry().setFromPoints([a.position, nodes[j].position]), new THREE.LineBasicMaterial({ color: 0x60a5fa, transparent:true, opacity:.28, blending:THREE.AdditiveBlending }));
-          networkGroup.add(line); edges.push({ line, a:i, b:j });
-        });
-      });
-      return { nodes, edges };
-    }
+// ========================
+// CREATE ORBIT NODES
+// ========================
+const nodes = [];
+const radius = 4;
 
-    const ai = buildAiCore();
-    const net = buildNetwork();
-    networkGroup.visible = false;
+skills.forEach((skill, i) => {
+  const angle = (i / skills.length) * Math.PI * 2;
 
-    function resize() {
-      const rect = container.getBoundingClientRect();
-      renderer.setSize(rect.width, rect.height, false);
-      camera.aspect = rect.width / rect.height;
-      camera.updateProjectionMatrix();
-    }
-    window.addEventListener('resize', resize); resize();
+  const mesh = new THREE.Mesh(
+    new THREE.SphereGeometry(0.4, 32, 32),
+    new THREE.MeshBasicMaterial({ color: skill.color })
+  );
 
-    canvas.addEventListener('mousemove', (event) => {
-      const rect = canvas.getBoundingClientRect();
-      pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-      pointer.y = -(((event.clientY - rect.top) / rect.height) * 2 - 1);
-    });
-    canvas.addEventListener('mouseleave', () => pointer.set(0,0));
-    canvas.addEventListener('click', () => pulseTime = performance.now());
+  mesh.position.set(
+    Math.cos(angle) * radius,
+    Math.sin(angle) * radius,
+    0
+  );
 
-    document.querySelectorAll('.visual-toggle button').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.visual-toggle button').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        mode = btn.dataset.mode;
-        aiGroup.visible = mode === 'ai';
-        networkGroup.visible = mode === 'network';
-        visualLabel.textContent = mode === 'ai' ? 'Application Core' : 'Live Network';
-        visualSubLabel.textContent = mode === 'ai' ? 'optimizing workflows...' : 'routing data signals...';
-      });
-    });
+  mesh.userData = skill;
 
-    function animate(time) {
-      requestAnimationFrame(animate);
-      const t = time * 0.001;
-      camera.position.x += (pointer.x * 1.15 - camera.position.x) * .035;
-      camera.position.y += (pointer.y * .85 - camera.position.y) * .035;
-      camera.lookAt(0,0,0);
+  root.add(mesh);
+  nodes.push(mesh);
+});
 
-      aiGroup.rotation.y = t * .32 + pointer.x * .12;
-      aiGroup.rotation.x = pointer.y * .1;
-      ai.points.material.size = 0.075 + Math.sin(t*2.2)*0.006;
-      ai.ring1.rotation.z += .012;
-      ai.ring2.rotation.z -= .016;
-      const pulse = Math.max(0, 1 - (time - pulseTime) / 900);
-      ai.ring1.material.opacity = .55 + pulse * .45;
-      ai.ring2.material.opacity = .35 + pulse * .5;
-      ai.sprite.material.opacity = .20 + pulse * .18;
-      aiGroup.scale.setScalar(1 + pulse * .035);
+// ========================
+// INTERACTION
+// ========================
+const raycaster = new THREE.Raycaster();
+const pointer = new THREE.Vector2();
 
-      networkGroup.rotation.y += .0018;
-      net.nodes.forEach((node) => {
-        const b = node.userData.base;
-        node.position.x = b.x + Math.sin(t + node.userData.phase) * .18 + pointer.x * .22;
-        node.position.y = b.y + Math.cos(t + node.userData.phase) * .18 + pointer.y * .22;
-      });
-      net.edges.forEach(({line,a,b}) => {
-        const p = line.geometry.attributes.position;
-        p.setXYZ(0, net.nodes[a].position.x, net.nodes[a].position.y, net.nodes[a].position.z);
-        p.setXYZ(1, net.nodes[b].position.x, net.nodes[b].position.y, net.nodes[b].position.z);
-        p.needsUpdate = true;
-      });
-      renderer.render(scene, camera);
-    }
-    requestAnimationFrame(animate);
-  </script>
+window.addEventListener('mousemove', (e) => {
+  pointer.x = (e.clientX / window.innerWidth) * 2 - 1;
+  pointer.y = -(e.clientY / window.innerHeight) * 2 + 1;
+});
+
+// ========================
+// ANIMATION LOOP
+// ========================
+function animate(time) {
+  requestAnimationFrame(animate);
+
+  root.rotation.z += 0.002;
+
+  // hover detection
+  raycaster.setFromCamera(pointer, camera);
+  const intersects = raycaster.intersectObjects(nodes);
+
+  if (intersects.length > 0) {
+    const obj = intersects[0].object;
+    const data = obj.userData;
+
+    tooltip.classList.remove('hidden');
+    tooltip.innerHTML = `
+      <strong>${data.name}</strong><br>
+      ${data.desc}
+    `;
+
+    obj.scale.set(1.5,1.5,1.5);
+  } else {
+    tooltip.classList.add('hidden');
+    nodes.forEach(n => n.scale.set(1,1,1));
+  }
+
+  renderer.render(scene, camera);
+}
+
+function resize() {
+  const rect = canvas.parentElement.getBoundingClientRect();
+  renderer.setSize(rect.width, rect.height);
+  camera.aspect = rect.width / rect.height;
+  camera.updateProjectionMatrix();
+}
+
+window.addEventListener('resize', resize);
+resize();
+
+animate();
+</script>
 </body>
 </html>
