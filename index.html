@@ -397,8 +397,8 @@
     }
 
     function getFontSize(text){
-      if (width < 480) return Math.min(width / Math.max(text.length * 0.52, 9), 36);
-      return Math.min(width / Math.max(text.length * 0.48, 8), 62);
+      if (width < 480) return Math.min(width / Math.max(text.length * 0.46, 8), 42);
+      return Math.min(width / Math.max(text.length * 0.42, 7), 72);
     }
 
     function buildText(text, immediate = false){
@@ -416,7 +416,7 @@
 
       const data = tctx.getImageData(0, 0, width, height).data;
       const targets = [];
-      const gap = isSmallScreen() ? 8 : 7;
+      const gap = isSmallScreen() ? 6 : 5;
 
       for(let y = 0; y < height; y += gap){
         for(let x = 0; x < width; x += gap){
@@ -425,7 +425,9 @@
         }
       }
 
-      const maxParticles = Math.min(targets.length, isSmallScreen() ? 780 : 1350);
+      targets.sort((a, b) => a.y - b.y || a.x - b.x);
+
+      const maxParticles = Math.min(targets.length, isSmallScreen() ? 1200 : 2600);
       particles = particles.slice(0, maxParticles);
 
       while (particles.length < maxParticles) {
@@ -442,13 +444,21 @@
         });
       }
 
-      particles.forEach((p) => {
-        const target = targets[Math.floor(Math.random() * targets.length)] || { x: width / 2, y: height / 2 };
+      particles.forEach((p, idx) => {
+        const target = targets[Math.floor((idx / maxParticles) * targets.length)] || { x: width / 2, y: height / 2 };
+
         p.tx = target.x;
         p.ty = target.y;
+
+        p.size = isSmallScreen()
+          ? Math.random() * 0.8 + 1.15
+          : Math.random() * 0.95 + 1.35;
+
+        p.alpha = Math.random() * 0.18 + 0.82;
+
         if (immediate) {
-          p.x = p.tx + (Math.random() - 0.5) * 24;
-          p.y = p.ty + (Math.random() - 0.5) * 24;
+          p.x = p.tx + (Math.random() - 0.5) * 14;
+          p.y = p.ty + (Math.random() - 0.5) * 14;
         }
       });
     }
@@ -473,13 +483,24 @@
       ctx.save();
       ctx.globalCompositeOperation = 'lighter';
 
+      ctx.save();
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.shadowBlur = 18;
+        ctx.shadowColor = 'rgba(236,72,153,0.9)';
+        ctx.fillStyle = 'rgba(236,72,153,0.16)';
+        ctx.arc(p.x, p.y, p.size * 2.4, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      ctx.restore();
+
       const useShadow = frame % 2 === 0;
       particles.forEach(p => {
         const dx = p.tx - p.x;
         const dy = p.ty - p.y;
 
-        p.vx += dx * 0.010;
-        p.vy += dy * 0.010;
+        p.vx += dx * 0.014;
+        p.vy += dy * 0.014;
 
         if(mouse.x !== null){
           const mx = p.x - mouse.x;
@@ -493,8 +514,8 @@
           }
         }
 
-        p.vx *= 0.905;
-        p.vy *= 0.905;
+        p.vx *= 0.88;
+        p.vy *= 0.88;
         p.x += p.vx;
         p.y += p.vy;
 
