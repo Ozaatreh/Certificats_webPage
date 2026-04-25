@@ -21,7 +21,7 @@
         <p class="subtitle">Application Developer at Petra Engineering, building enterprise systems with Angular, ASP.NET (C#), SQL Server, REST APIs, and Power BI. I work across frontend, backend, database, and reporting layers to deliver reliable business applications and data-driven solutions.</p>
         <div class="cta-row"><a class="btn btn-primary" href="#experience">View Experience</a><a class="btn" href="#certificates">Certifications</a><a class="btn" href="https://github.com/Ozaatreh" target="_blank" rel="noreferrer">GitHub</a><a class="btn" href="https://www.linkedin.com/in/omar-zaatreh/" target="_blank" rel="noreferrer">LinkedIn</a></div>
       </div>
-      <div class="particle-box"><canvas id="canvas"></canvas><div class="particle-hint"><strong>Interactive particle identity</strong><span>Ultra-light version. Click to reveal the next skill.</span></div></div>
+      <div class="particle-box"><canvas id="canvas"></canvas><div class="particle-hint"><strong>Interactive particle identity</strong><span>Smooth particle animation. Move gently or click to reveal the next skill.</span></div></div>
     </section>
     <section class="section" id="experience"><h2>Experience</h2><p class="section-lead">Practical experience in enterprise applications, backend APIs, database operations, reporting, ERP workflows, and business-focused software delivery.</p><div class="card"><h3>Application Developer — Petra Engineering</h3><div class="date">Nov 2025 – Present</div><ul><li>Develop and maintain enterprise Angular applications used in real business operations.</li><li>Build ASP.NET (C#) APIs and backend features for internal systems.</li><li>Work with SQL Server and SSMS to write queries, stored procedures, and reporting logic.</li><li>Create Power BI dashboards and reporting views to support operational decision-making.</li><li>Collaborate across frontend, backend, database, and reporting layers to deliver maintainable business solutions.</li></ul></div><div class="card"><h3>ERP Intern — EHS (Hakeem)</h3><div class="date">Feb 2025 – Apr 2025</div><ul><li>Worked inside the ERP department on real-world enterprise workflows.</li><li>Supported business process automation and backend-oriented application tasks.</li><li>Completed Oracle APEX professional training and strengthened database development skills.</li></ul></div></section>
     <section class="section" id="certificates"><h2>Certifications</h2><p class="section-lead">Selected certifications covering software development, cloud, databases, BI, networking, and agile delivery.</p><div class="cert-grid"><div class="card cert-card"><h3>Flutter & Dart Certificate</h3><a href="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/Omar%20Murad%20Zaatreh%20(1).jpg" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/Omar%20Murad%20Zaatreh%20(1).jpg" alt="Flutter and Dart Certificate"></a></div><div class="card cert-card"><h3>Oracle APEX Cloud Developer Certified Professional</h3><a href="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/Oracle_certificate.png" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/Oracle_certificate.png" alt="Oracle APEX Certificate"></a></div><div class="card cert-card"><h3>CCNA Certificate</h3><a href="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/CCNA.jpg" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/CCNA.jpg" alt="CCNA Certificate"></a></div><div class="card cert-card"><h3>Oracle SQL Databases Specialization</h3><a href="https://www.coursera.org/account/accomplishments/specialization/61SVAY1E412V" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/sql_pic.png" alt="Oracle SQL Certificate"></a></div><div class="card cert-card"><h3>AWS Cloud Practitioner Essentials</h3><a href="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/AWS%20Cloud%20Practitioner%20Essentials.png" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/AWS%20Cloud%20Practitioner%20Essentials.png" alt="AWS Cloud Practitioner Essentials"></a></div><div class="card cert-card"><h3>.NET Full Stack Foundation</h3><a href="https://coursera.org/share/271011d95397faea6e39675ae60324f0" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/.Net%20Full%20Stack%20Foundation.png" alt=".NET Full Stack Foundation"></a></div></div></section>
@@ -30,81 +30,132 @@
   <script>
     const canvas=document.getElementById('canvas');
     const ctx=canvas.getContext('2d',{alpha:true});
-    let width=0,height=0,index=0,timer=null;
+
+    let particles=[];
+    let mouse={x:null,y:null,radius:72};
+    let width=0,height=0,index=0;
     const words=['Omar Zaatreh','Application Developer','Angular + .NET','SQL Server','Power BI','REST APIs','Enterprise Systems'];
 
-    function setup(){
+    function resize(){
       width=canvas.parentElement.clientWidth;
       height=canvas.parentElement.clientHeight;
       canvas.width=width;
       canvas.height=height;
       canvas.style.width=width+'px';
       canvas.style.height=height+'px';
-      drawParticleText(words[index]);
+      buildText(words[index],true);
     }
 
-    function fontSize(text){
-      if(width<480)return Math.min(width/Math.max(text.length*.5,8),38);
-      return Math.min(width/Math.max(text.length*.46,7),64);
+    function getFontSize(text){
+      if(width<480)return Math.min(width/Math.max(text.length*.45,7.5),42);
+      return Math.min(width/Math.max(text.length*.40,6.6),70);
     }
 
-    function drawBackground(){
-      ctx.clearRect(0,0,width,height);
-      const glow=ctx.createRadialGradient(width/2,height/2,10,width/2,height/2,width*.72);
-      glow.addColorStop(0,'rgba(236,72,153,.14)');
-      glow.addColorStop(.48,'rgba(56,189,248,.055)');
-      glow.addColorStop(1,'rgba(2,6,23,0)');
-      ctx.fillStyle=glow;
-      ctx.fillRect(0,0,width,height);
-    }
-
-    function drawParticleText(text){
-      drawBackground();
+    function buildText(text,immediate=false){
       const temp=document.createElement('canvas');
       const tctx=temp.getContext('2d',{willReadFrequently:true});
-      temp.width=width;temp.height=height;
-      const size=fontSize(text);
+      temp.width=width;
+      temp.height=height;
+
+      const size=getFontSize(text);
       tctx.font=`900 ${size}px Inter, Arial, sans-serif`;
       tctx.textAlign='center';
       tctx.textBaseline='middle';
-      tctx.fillStyle='#fff';
+      tctx.fillStyle='white';
       tctx.fillText(text,width/2,height/2);
+
       const data=tctx.getImageData(0,0,width,height).data;
-      const gap=width<560?8:7;
-      ctx.save();
-      ctx.globalCompositeOperation='lighter';
-      ctx.shadowBlur=7;
-      ctx.shadowColor='rgba(236,72,153,.55)';
+      const targets=[];
+      const gap=width<560?6:5;
+
       for(let y=0;y<height;y+=gap){
         for(let x=0;x<width;x+=gap){
           const i=(y*width+x)*4;
-          if(data[i+3]>130){
-            const pulse=((x+y+Date.now()/70)%14)/14;
-            ctx.beginPath();
-            ctx.fillStyle=`rgba(236,95,210,${.76+pulse*.2})`;
-            ctx.arc(x,y,width<560?1.45:1.7,0,Math.PI*2);
-            ctx.fill();
-          }
+          if(data[i+3]>128)targets.push({x,y});
         }
       }
+
+      const maxParticles=Math.min(targets.length,width<560?950:1700);
+      const next=[];
+
+      for(let i=0;i<maxParticles;i++){
+        const target=targets[Math.floor((i/maxParticles)*targets.length)]||{x:width/2,y:height/2};
+        const old=particles[i];
+        next.push({
+          x:immediate||!old?Math.random()*width:old.x,
+          y:immediate||!old?Math.random()*height:old.y,
+          tx:target.x,
+          ty:target.y,
+          vx:old?old.vx:0,
+          vy:old?old.vy:0,
+          size:width<560?2.05:2.25
+        });
+      }
+
+      particles=next;
+    }
+
+    function animate(){
+      ctx.clearRect(0,0,width,height);
+
+      const bg=ctx.createRadialGradient(width/2,height/2,10,width/2,height/2,width*.72);
+      bg.addColorStop(0,'rgba(236,72,153,.10)');
+      bg.addColorStop(.48,'rgba(56,189,248,.04)');
+      bg.addColorStop(1,'rgba(2,6,23,0)');
+      ctx.fillStyle=bg;
+      ctx.fillRect(0,0,width,height);
+
+      ctx.save();
+      ctx.globalCompositeOperation='lighter';
+      ctx.shadowBlur=8;
+      ctx.shadowColor='rgba(236,72,153,.45)';
+
+      particles.forEach(p=>{
+        const dx=p.tx-p.x;
+        const dy=p.ty-p.y;
+
+        p.vx+=dx*.018;
+        p.vy+=dy*.018;
+
+        if(mouse.x!==null){
+          const mx=p.x-mouse.x;
+          const my=p.y-mouse.y;
+          const dist=Math.sqrt(mx*mx+my*my);
+          if(dist<mouse.radius){
+            const angle=Math.atan2(my,mx);
+            const force=(mouse.radius-dist)/mouse.radius;
+            p.vx+=Math.cos(angle)*force*2.1;
+            p.vy+=Math.sin(angle)*force*2.1;
+          }
+        }
+
+        p.vx*=.89;
+        p.vy*=.89;
+        p.x+=p.vx;
+        p.y+=p.vy;
+
+        ctx.fillStyle='rgba(236,72,153,.96)';
+        ctx.fillRect(p.x,p.y,p.size,p.size);
+      });
+
       ctx.restore();
+      requestAnimationFrame(animate);
     }
 
-    function nextWord(){
-      index=(index+1)%words.length;
-      drawParticleText(words[index]);
-    }
+    canvas.addEventListener('mousemove',e=>{
+      const rect=canvas.getBoundingClientRect();
+      mouse.x=e.clientX-rect.left;
+      mouse.y=e.clientY-rect.top;
+    },{passive:true});
 
-    function startAutoChange(){
-      clearInterval(timer);
-      timer=setInterval(nextWord,5600);
-    }
+    canvas.addEventListener('mouseleave',()=>{mouse.x=null;mouse.y=null;});
+    canvas.addEventListener('click',()=>{index=(index+1)%words.length;buildText(words[index]);});
 
     let resizeTimer;
-    window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(setup,180);});
-    canvas.addEventListener('click',()=>{nextWord();startAutoChange();});
-    document.addEventListener('visibilitychange',()=>{document.hidden?clearInterval(timer):startAutoChange();});
-    setup();startAutoChange();
+    window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(resize,120);});
+
+    resize();
+    animate();
   </script>
 </body>
 </html>
