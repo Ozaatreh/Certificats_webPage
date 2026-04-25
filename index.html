@@ -143,7 +143,15 @@
       z-index: 1;
     }
 
-    #networkCanvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: crosshair; }
+    #particleCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      cursor: crosshair;
+      z-index: 2;
+    }
 
     .visual-toggle {
       position: absolute;
@@ -257,14 +265,14 @@
       </div>
 
       <div class="hero-visual" aria-label="Interactive AI core and data network hero">
-        <canvas id="networkCanvas"></canvas>
+        <canvas id="particleCanvas"></canvas>
         <div class="visual-toggle">
           <button class="active" data-mode="ai">AI Core</button>
           <button data-mode="network">Network</button>
         </div>
         <div class="visual-overlay">
-          <div class="hint-card"><strong>ChatGPT-style AI core.</strong><span>Move your mouse for parallax, click to trigger a scanning signal, or switch to the network view.</span></div>
-          <div class="mini-panel"><strong id="visualLabel">Application Core</strong><span id="visualSubLabel">optimizing workflows...</span></div>
+          <div class="hint-card"><strong>Particle text core.</strong><span>Move your mouse to disturb the particles, click to change text, or switch to the network view.</span></div>
+          <div class="mini-panel"><strong id="visualLabel">Application Core</strong><span id="visualSubLabel">forming portfolio signals...</span></div>
         </div>
       </div>
     </header>
@@ -343,126 +351,212 @@
   </footer>
 
   <script>
-const canvas = document.getElementById("particleCanvas");
-const ctx = canvas.getContext("2d");
+    const canvas = document.getElementById("particleCanvas");
+    const ctx = canvas.getContext("2d");
+    const visualLabel = document.getElementById("visualLabel");
+    const visualSubLabel = document.getElementById("visualSubLabel");
 
-let particles = [];
-let mouse = { x: null, y: null, radius: 80 };
+    let particles = [];
+    let animationFrameId = null;
+    let wordIndex = 0;
+    let mode = "ai";
+    let width = 0;
+    let height = 0;
+    let lastBuildWidth = 0;
+    let lastBuildHeight = 0;
 
-const words = [
-  "Omar Zaatreh",
-  "Application Developer",
-  "Angular + .NET",
-  "SQL Server",
-  "Power BI",
-  "REST APIs"
-];
+    const mouse = { x: null, y: null, radius: 90 };
 
-let index = 0;
-let width, height;
+    const wordSets = {
+      ai: [
+        "Omar Zaatreh",
+        "Application Developer",
+        "Angular + .NET",
+        "SQL Server",
+        "Power BI",
+        "REST APIs"
+      ],
+      network: [
+        "Enterprise Systems",
+        "Data Workflows",
+        "SSRS Reports",
+        "Dashboards",
+        "APIs",
+        "Automation"
+      ]
+    };
 
-function resize(){
-  const rect = canvas.parentElement.getBoundingClientRect();
-  width = rect.width;
-  height = rect.height;
-
-  canvas.width = width;
-  canvas.height = height;
-
-  buildText(words[index]);
-}
-
-function buildText(text){
-  const temp = document.createElement("canvas");
-  const tctx = temp.getContext("2d");
-
-  temp.width = width;
-  temp.height = height;
-
-  // 🔥 FIXED clarity (this was your main problem before)
-  tctx.font = `bold ${Math.min(width * 0.08, 80)}px Inter`;
-  tctx.textAlign = "center";
-  tctx.fillStyle = "white";
-  tctx.fillText(text, width/2, height/2);
-
-  const data = tctx.getImageData(0,0,width,height).data;
-  particles = [];
-
-  for(let y=0; y<height; y+=5){
-    for(let x=0; x<width; x+=5){
-      const i = (y * width + x) * 4;
-      if(data[i+3] > 128){
-        particles.push({
-          x: Math.random()*width,
-          y: Math.random()*height,
-          tx: x,
-          ty: y,
-          vx: 0,
-          vy: 0
-        });
+    const labels = {
+      ai: {
+        title: "Application Core",
+        subtitle: "forming portfolio signals..."
+      },
+      network: {
+        title: "Live Network",
+        subtitle: "routing data signals..."
       }
+    };
+
+    function getCurrentWords() {
+      return wordSets[mode] || wordSets.ai;
     }
-  }
-}
 
-function animate(){
-  ctx.clearRect(0,0,width,height);
+    function resize() {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-  particles.forEach(p => {
+      width = Math.max(1, Math.floor(rect.width));
+      height = Math.max(1, Math.floor(rect.height));
 
-    let dx = p.tx - p.x;
-    let dy = p.ty - p.y;
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
 
-    p.vx += dx * 0.015;
-    p.vy += dy * 0.015;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    if(mouse.x !== null){
-      let mx = p.x - mouse.x;
-      let my = p.y - mouse.y;
-      let dist = Math.sqrt(mx*mx + my*my);
-
-      if(dist < mouse.radius){
-        let angle = Math.atan2(my, mx);
-        let force = (mouse.radius - dist) / mouse.radius;
-
-        p.vx += Math.cos(angle) * force * 2.5;
-        p.vy += Math.sin(angle) * force * 2.5;
+      if (Math.abs(width - lastBuildWidth) > 8 || Math.abs(height - lastBuildHeight) > 8) {
+        buildText(getCurrentWords()[wordIndex]);
+        lastBuildWidth = width;
+        lastBuildHeight = height;
       }
     }
 
-    p.vx *= 0.92;
-    p.vy *= 0.92;
+    function getFontSize(text) {
+      const base = Math.min(width * 0.095, 68);
+      if (text.length > 18) return Math.max(30, Math.min(base, width / (text.length * 0.55)));
+      return Math.max(34, base);
+    }
 
-    p.x += p.vx;
-    p.y += p.vy;
+    function buildText(text) {
+      const temp = document.createElement("canvas");
+      const tctx = temp.getContext("2d", { willReadFrequently: true });
 
-    ctx.fillStyle = "#38bdf8"; // 🔥 match your theme (cyan)
-    ctx.fillRect(p.x, p.y, 2, 2);
-  });
+      temp.width = width;
+      temp.height = height;
 
-  requestAnimationFrame(animate);
-}
+      const fontSize = getFontSize(text);
+      tctx.font = `900 ${fontSize}px Inter, Arial, sans-serif`;
+      tctx.textAlign = "center";
+      tctx.textBaseline = "middle";
+      tctx.fillStyle = "#ffffff";
+      tctx.shadowColor = "rgba(56, 189, 248, 0.65)";
+      tctx.shadowBlur = 18;
+      tctx.fillText(text, width / 2, height / 2);
 
-canvas.addEventListener("mousemove", e=>{
-  const rect = canvas.getBoundingClientRect();
-  mouse.x = e.clientX - rect.left;
-  mouse.y = e.clientY - rect.top;
-});
+      const data = tctx.getImageData(0, 0, width, height).data;
+      const nextParticles = [];
+      const gap = width < 520 ? 7 : 6;
 
-canvas.addEventListener("mouseleave", ()=>{
-  mouse.x = null;
-  mouse.y = null;
-});
+      for (let y = 0; y < height; y += gap) {
+        for (let x = 0; x < width; x += gap) {
+          const i = (y * width + x) * 4;
+          if (data[i + 3] > 130) {
+            const existing = particles[nextParticles.length];
+            nextParticles.push({
+              x: existing ? existing.x : Math.random() * width,
+              y: existing ? existing.y : Math.random() * height,
+              tx: x,
+              ty: y,
+              vx: existing ? existing.vx : 0,
+              vy: existing ? existing.vy : 0,
+              size: Math.random() > 0.78 ? 2.2 : 1.8,
+              alpha: 0.68 + Math.random() * 0.32
+            });
+          }
+        }
+      }
 
-canvas.addEventListener("click", ()=>{
-  index = (index + 1) % words.length;
-  buildText(words[index]);
-});
+      particles = nextParticles.slice(0, 1800);
+    }
 
-window.addEventListener("resize", resize);
+    function drawBackground() {
+      const gradient = ctx.createRadialGradient(width / 2, height / 2, 0, width / 2, height / 2, Math.max(width, height) * 0.55);
+      gradient.addColorStop(0, "rgba(56, 189, 248, 0.10)");
+      gradient.addColorStop(0.42, "rgba(99, 102, 241, 0.05)");
+      gradient.addColorStop(1, "rgba(2, 6, 23, 0)");
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, width, height);
+    }
 
-resize();
-animate();
-</script>
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      drawBackground();
+
+      for (const p of particles) {
+        const dx = p.tx - p.x;
+        const dy = p.ty - p.y;
+
+        p.vx += dx * 0.018;
+        p.vy += dy * 0.018;
+
+        if (mouse.x !== null && mouse.y !== null) {
+          const mx = p.x - mouse.x;
+          const my = p.y - mouse.y;
+          const dist = Math.hypot(mx, my);
+
+          if (dist < mouse.radius) {
+            const force = (mouse.radius - dist) / mouse.radius;
+            const angle = Math.atan2(my, mx);
+            p.vx += Math.cos(angle) * force * 2.2;
+            p.vy += Math.sin(angle) * force * 2.2;
+          }
+        }
+
+        p.vx *= 0.9;
+        p.vy *= 0.9;
+        p.x += p.vx;
+        p.y += p.vy;
+
+        ctx.fillStyle = mode === "ai"
+          ? `rgba(56, 189, 248, ${p.alpha})`
+          : `rgba(167, 139, 250, ${p.alpha})`;
+        ctx.fillRect(p.x, p.y, p.size, p.size);
+      }
+
+      animationFrameId = requestAnimationFrame(animate);
+    }
+
+    function setMode(nextMode) {
+      mode = nextMode;
+      wordIndex = 0;
+
+      document.querySelectorAll(".visual-toggle button").forEach((button) => {
+        button.classList.toggle("active", button.dataset.mode === mode);
+      });
+
+      visualLabel.textContent = labels[mode].title;
+      visualSubLabel.textContent = labels[mode].subtitle;
+      buildText(getCurrentWords()[wordIndex]);
+    }
+
+    canvas.addEventListener("mousemove", (event) => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = event.clientX - rect.left;
+      mouse.y = event.clientY - rect.top;
+    });
+
+    canvas.addEventListener("mouseleave", () => {
+      mouse.x = null;
+      mouse.y = null;
+    });
+
+    canvas.addEventListener("click", () => {
+      const words = getCurrentWords();
+      wordIndex = (wordIndex + 1) % words.length;
+      buildText(words[wordIndex]);
+    });
+
+    document.querySelectorAll(".visual-toggle button").forEach((button) => {
+      button.addEventListener("click", () => setMode(button.dataset.mode));
+    });
+
+    window.addEventListener("resize", resize, { passive: true });
+
+    resize();
+    buildText(getCurrentWords()[wordIndex]);
+    if (animationFrameId) cancelAnimationFrame(animationFrameId);
+    animate();
+  </script>
 </body>
 </html>
