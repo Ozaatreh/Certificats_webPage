@@ -441,12 +441,14 @@
       tctx.textBaseline = "middle";
       tctx.fillStyle = "#ffffff";
       tctx.shadowColor = "rgba(56, 189, 248, 0.65)";
-      tctx.shadowBlur = 18;
+      tctx.shadowBlur = 28;
       tctx.fillText(text, width / 2, height / 2);
-
+      tctx.lineWidth = 1;
+      tctx.strokeStyle = "rgba(255,255,255,0.3)";
+      tctx.strokeText(text, width / 2, height / 2);
       const data = tctx.getImageData(0, 0, width, height).data;
       const nextParticles = [];
-      const gap = width < 520 ? 7 : 6;
+      const gap = width < 520 ? 5 : 4;
 
       for (let y = 0; y < height; y += gap) {
         for (let x = 0; x < width; x += gap) {
@@ -460,14 +462,14 @@
               ty: y,
               vx: existing ? existing.vx : 0,
               vy: existing ? existing.vy : 0,
-              size: Math.random() > 0.78 ? 2.2 : 1.8,
+              size: Math.random() > 0.7 ? 2.8 : 2.2,
               alpha: 0.68 + Math.random() * 0.32
             });
           }
         }
       }
 
-      particles = nextParticles.slice(0, 1800);
+      particles = nextParticles.slice(0, 2600);
     }
 
     function drawBackground() {
@@ -481,6 +483,8 @@
 
     function animate() {
       ctx.clearRect(0, 0, width, height);
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = mode === "ai" ? "#38bdf8" : "#a78bfa";
       drawBackground();
 
       for (const p of particles) {
@@ -509,8 +513,8 @@
         p.y += p.vy;
 
         ctx.fillStyle = mode === "ai"
-          ? `rgba(56, 189, 248, ${p.alpha})`
-          : `rgba(167, 139, 250, ${p.alpha})`;
+        ? `rgba(56, 189, 248, ${0.85})`
+        : `rgba(167, 139, 250, ${0.85})`;
         ctx.fillRect(p.x, p.y, p.size, p.size);
       }
 
