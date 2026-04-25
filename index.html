@@ -5,22 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Omar Zaatreh - Application Developer portfolio: Angular, ASP.NET C#, SQL Server, Power BI, Flutter, Firebase, Oracle APEX, and enterprise systems." />
   <title>Omar Zaatreh | Application Developer</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #020617;
-      --card: rgba(255, 255, 255, 0.065);
-      --card-strong: rgba(255, 255, 255, 0.1);
-      --border: rgba(148, 163, 184, 0.24);
-      --muted: #94a3b8;
-      --text-soft: #cbd5e1;
-      --pink: #ec4899;
+      --bg: #050816;
+      --bg-2: #07111f;
+      --card: rgba(255, 255, 255, 0.08);
+      --card-strong: rgba(255, 255, 255, 0.12);
+      --border: rgba(148, 163, 184, 0.22);
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --soft: #94a3b8;
       --cyan: #38bdf8;
+      --blue: #60a5fa;
       --violet: #8b5cf6;
+      --green: #22c55e;
+      --shadow: 0 24px 90px rgba(15, 23, 42, 0.45);
     }
 
     * { box-sizing: border-box; }
@@ -29,12 +31,11 @@
     body {
       margin: 0;
       font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--text);
       background:
-        radial-gradient(circle at 18% 12%, rgba(56, 189, 248, 0.13), transparent 28%),
-        radial-gradient(circle at 82% 18%, rgba(236, 72, 153, 0.12), transparent 32%),
-        radial-gradient(circle at 50% 95%, rgba(139, 92, 246, 0.12), transparent 38%),
-        var(--bg);
-      color: #fff;
+        radial-gradient(circle at 20% 10%, rgba(56, 189, 248, 0.18), transparent 28%),
+        radial-gradient(circle at 80% 0%, rgba(139, 92, 246, 0.22), transparent 30%),
+        linear-gradient(135deg, var(--bg), var(--bg-2));
       overflow-x: hidden;
     }
 
@@ -44,591 +45,460 @@
       inset: 0;
       pointer-events: none;
       background-image:
-        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-      background-size: 56px 56px;
-      mask-image: radial-gradient(circle at 50% 20%, black, transparent 72%);
+        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 52px 52px;
+      mask-image: radial-gradient(circle at 50% 12%, black, transparent 70%);
       z-index: 0;
     }
 
     a { color: inherit; }
-
-    .container {
-      position: relative;
-      z-index: 1;
-      width: min(1120px, 90%);
-      margin: auto;
-    }
+    .page { position: relative; z-index: 1; }
 
     .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(380px, 0.95fr);
-      align-items: center;
       min-height: 100vh;
-      gap: clamp(32px, 5vw, 70px);
-      padding: 40px 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(380px, 0.94fr);
+      gap: clamp(30px, 5vw, 82px);
+      align-items: center;
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 48px 0 70px;
     }
 
-    .badge {
+    .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 10px 14px;
+      padding: 9px 14px;
       border: 1px solid var(--border);
       border-radius: 999px;
       background: rgba(15, 23, 42, 0.55);
-      color: var(--text-soft);
-      font-size: 14px;
-      margin-bottom: 22px;
+      color: var(--muted);
+      font-size: 0.88rem;
       backdrop-filter: blur(14px);
     }
 
-    .badge-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--pink);
-      box-shadow: 0 0 18px var(--pink);
-    }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 18px var(--cyan); }
 
     h1 {
-      font-size: clamp(44px, 7vw, 76px);
-      line-height: 0.95;
-      letter-spacing: -0.07em;
-      margin: 0;
+      margin: 24px 0 16px;
+      font-size: clamp(3rem, 8vw, 6.8rem);
+      line-height: 0.92;
+      letter-spacing: -0.08em;
       font-weight: 900;
     }
 
     .gradient-text {
       display: block;
-      margin-top: 8px;
-      background: linear-gradient(120deg, #ffffff, #93c5fd 44%, #f0abfc 80%);
+      background: linear-gradient(120deg, #ffffff 5%, #93c5fd 44%, #a78bfa 82%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
 
-    .subtitle {
-      color: var(--text-soft);
-      margin-top: 24px;
+    .hero-subtitle {
+      max-width: 720px;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.32rem);
       line-height: 1.75;
-      font-size: 1.08rem;
-      max-width: 590px;
+      margin: 0 0 28px;
     }
+    .hero-subtitle strong { color: #ffffff; font-weight: 800; }
 
-    .cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 30px;
-    }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin: 30px 0 34px; }
 
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 46px;
-      padding: 0 18px;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: 800;
-      color: white;
-      border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.07);
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      min-height: 48px; padding: 0 18px; border-radius: 999px;
+      font-weight: 800; text-decoration: none; border: 1px solid var(--border);
       transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
     }
+    .btn:hover { transform: translateY(-3px); }
+    .btn-primary { background: linear-gradient(135deg, var(--cyan), var(--violet)); color: white; border-color: transparent; box-shadow: 0 18px 45px rgba(56,189,248,0.25); }
+    .btn-secondary { background: rgba(255,255,255,0.07); color: var(--text); backdrop-filter: blur(14px); }
 
-    .btn:hover {
-      transform: translateY(-3px);
-      border-color: rgba(236, 72, 153, 0.65);
-      background: rgba(255, 255, 255, 0.11);
-    }
+    .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; max-width: 660px; }
+    .stat { padding: 16px; border: 1px solid var(--border); border-radius: 20px; background: rgba(15, 23, 42, 0.48); backdrop-filter: blur(16px); }
+    .stat strong { display: block; font-size: 1.28rem; color: #fff; margin-bottom: 6px; }
+    .stat span { color: var(--soft); font-size: 0.88rem; }
 
-    .btn-primary {
-      border: 0;
-      background: linear-gradient(135deg, var(--pink), var(--violet), var(--cyan));
-      box-shadow: 0 20px 55px rgba(236, 72, 153, 0.22);
-    }
-
-    .particle-box {
+    .hero-visual {
       position: relative;
-      height: 540px;
+      min-height: 600px;
       border-radius: 34px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      background: radial-gradient(circle at 50% 42%, rgba(56, 189, 248, 0.13), rgba(15,23,42,0.18) 38%, rgba(2,6,23,0.72) 100%);
       overflow: hidden;
-      border: 1px solid rgba(148, 163, 184, 0.28);
-      background:
-        radial-gradient(circle at 50% 45%, rgba(236, 72, 153, 0.18), transparent 34%),
-        radial-gradient(circle at 70% 22%, rgba(56, 189, 248, 0.15), transparent 30%),
-        linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(2, 6, 23, 0.98));
-      box-shadow:
-        0 30px 120px rgba(2, 6, 23, 0.55),
-        inset 0 0 80px rgba(236, 72, 153, 0.08);
+      box-shadow: var(--shadow);
       isolation: isolate;
     }
 
-    .particle-box::before {
+    .hero-visual::before {
       content: "";
       position: absolute;
-      inset: -30%;
-      background:
-        radial-gradient(circle, rgba(236, 72, 153, 0.11), transparent 32%),
-        radial-gradient(circle at 70% 40%, rgba(56, 189, 248, 0.1), transparent 30%);
-      filter: blur(28px);
-      animation: ambientGlow 12s ease-in-out infinite alternate;
-      z-index: 0;
-    }
-
-    @keyframes ambientGlow {
-      from { transform: translate3d(-2%, -1%, 0) rotate(0deg); opacity: 0.7; }
-      to { transform: translate3d(2%, 1%, 0) rotate(5deg); opacity: 0.95; }
-    }
-
-    canvas {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      height: 100%;
-      display: block;
-      cursor: pointer;
-    }
-
-    .particle-hint {
-      position: absolute;
-      left: 24px;
-      bottom: 24px;
-      max-width: 300px;
-      padding: 14px 16px;
-      border-radius: 18px;
-      background: rgba(2, 6, 23, 0.72);
-      border: 1px solid rgba(148, 163, 184, 0.28);
-      backdrop-filter: blur(14px);
-      color: white;
+      inset: 0;
+      background: radial-gradient(circle at 50% 48%, transparent 0 22%, rgba(14,165,233,0.08) 30%, transparent 55%);
       pointer-events: none;
-      z-index: 2;
-      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
+      z-index: 1;
     }
 
-    .particle-hint strong {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 0.95rem;
+    #networkCanvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: crosshair; }
+
+    .visual-toggle {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      z-index: 5;
+      display: flex;
+      gap: 8px;
+      padding: 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.26);
+      background: rgba(2,6,23,0.68);
+      backdrop-filter: blur(14px);
     }
-
-    .particle-hint span {
-      color: var(--text-soft);
-      font-size: 0.86rem;
-      line-height: 1.5;
+    .visual-toggle button {
+      border: 0; border-radius: 999px; padding: 9px 13px; background: transparent;
+      color: var(--muted); cursor: pointer; font-weight: 800;
     }
+    .visual-toggle button.active { background: linear-gradient(135deg, var(--cyan), var(--violet)); color: white; }
 
-    .section { padding: 80px 0; }
-
-    .section h2 {
-      font-size: clamp(34px, 5vw, 54px);
-      letter-spacing: -0.06em;
-      margin: 0 0 18px;
+    .visual-overlay {
+      position: absolute;
+      inset: auto 22px 22px 22px;
+      display: flex; justify-content: space-between; gap: 16px; align-items: end;
+      pointer-events: none; z-index: 4;
     }
+    .hint-card, .mini-panel { border: 1px solid rgba(148,163,184,0.25); background: rgba(2,6,23,0.58); backdrop-filter: blur(16px); border-radius: 20px; padding: 14px 16px; box-shadow: 0 16px 40px rgba(0,0,0,0.24); }
+    .hint-card { max-width: 285px; text-align: left; }
+    .hint-card strong { display: block; margin-bottom: 6px; }
+    .hint-card span, .mini-panel span { color: var(--soft); font-size: 0.86rem; line-height: 1.5; }
+    .mini-panel { text-align: right; min-width: 170px; }
+    .mini-panel strong { display: block; font-size: 1.45rem; color: var(--cyan); }
 
-    .section-lead {
-      color: var(--text-soft);
-      line-height: 1.8;
-      max-width: 780px;
-      margin: 0 0 30px;
+    section { width: min(1180px, calc(100% - 40px)); margin: 0 auto; padding: 62px 0; }
+    .section-title { font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1; letter-spacing: -0.05em; margin: 0 0 16px; }
+    .section-lead { max-width: 850px; color: var(--muted); line-height: 1.8; font-size: 1.05rem; margin: 0 0 28px; }
+
+    .about-grid { display: grid; grid-template-columns: 330px minmax(0, 1fr); gap: 28px; align-items: stretch; }
+    .profile-card, .content-card, .certificate { border: 1px solid var(--border); background: var(--card); border-radius: 28px; box-shadow: 0 18px 55px rgba(2,6,23,0.25); backdrop-filter: blur(18px); }
+    .profile-card { padding: 24px; text-align: center; }
+    .profile-image { width: 220px; height: 220px; max-width: 100%; object-fit: cover; border-radius: 50%; border: 1px solid rgba(255,255,255,0.4); box-shadow: 0 0 45px rgba(56,189,248,0.28); }
+    .profile-card h2 { margin: 18px 0 6px; }
+    .profile-card p { color: var(--muted); line-height: 1.7; }
+    .content-card { padding: clamp(22px, 4vw, 36px); text-align: left; }
+    .content-card p { color: var(--muted); line-height: 1.9; font-size: 1.04rem; margin: 0 0 16px; }
+
+    .skill-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .chip { border: 1px solid rgba(148,163,184,0.26); background: rgba(255,255,255,0.07); color: #e2e8f0; border-radius: 999px; padding: 9px 12px; font-size: 0.9rem; }
+
+    .experience-shell { position: relative; overflow: hidden; }
+    .experience-shell::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 20% 0%, rgba(56,189,248,0.13), transparent 34%); pointer-events: none; }
+    .experience-timeline { position: relative; display: flex; flex-direction: column; gap: 20px; padding-left: 26px; }
+    .experience-timeline::before { content: ""; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(to bottom, var(--cyan), var(--violet)); opacity: 0.55; }
+    .experience-item { position: relative; padding: 22px 24px; border: 1px solid rgba(148,163,184,0.2); border-radius: 22px; background: rgba(255,255,255,0.045); transition: transform .25s ease, border-color .25s ease, background .25s ease; }
+    .experience-item:hover { transform: translateY(-5px); border-color: rgba(56,189,248,0.58); background: rgba(255,255,255,0.07); }
+    .experience-item::before { content: ""; position: absolute; left: -25px; top: 30px; width: 13px; height: 13px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 18px var(--cyan); }
+    .exp-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 12px; }
+    .exp-header h3 { margin: 0; font-size: 1.15rem; }
+    .exp-header span { color: var(--soft); font-weight: 700; font-size: .92rem; }
+    .experience-item ul { margin: 0; padding-left: 18px; color: var(--muted); line-height: 1.75; }
+
+    .certificate-container { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; margin-top: 32px; }
+    .certificate { padding: 18px; transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease; text-align: left; }
+    .certificate:hover { transform: translateY(-8px); border-color: rgba(56,189,248,0.55); background: var(--card-strong); }
+    .certificate h3 { min-height: 44px; margin: 0 0 14px; font-size: 1rem; line-height: 1.35; }
+    .certificate img { width: 100%; aspect-ratio: 16 / 11; object-fit: cover; border-radius: 18px; border: 1px solid rgba(255,255,255,0.14); display: block; }
+
+    footer { width: min(1180px, calc(100% - 40px)); margin: 0 auto; padding: 42px 0 60px; display: flex; justify-content: space-between; align-items: center; gap: 22px; color: var(--soft); border-top: 1px solid var(--border); }
+    .social-icons { display: flex; gap: 12px; flex-wrap: wrap; }
+    .social-icons a { text-decoration: none; border: 1px solid var(--border); border-radius: 999px; padding: 10px 14px; background: rgba(255,255,255,0.06); color: var(--text); font-weight: 800; transition: transform 0.25s ease, background 0.25s ease; }
+    .social-icons a:hover { transform: translateY(-3px); background: rgba(255,255,255,0.12); }
+
+    @media (max-width: 980px) {
+      .hero { grid-template-columns: 1fr; padding-top: 34px; }
+      .hero-visual { min-height: 520px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .certificate-container { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 28px;
-      margin-bottom: 20px;
-      box-shadow: 0 18px 55px rgba(2, 6, 23, 0.24);
-      backdrop-filter: blur(18px);
-      transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(236, 72, 153, 0.5);
-      background: var(--card-strong);
-    }
-
-    .card h3 { margin: 0 0 8px; font-size: 1.15rem; }
-    .date { color: var(--muted); font-size: 14px; margin-bottom: 14px; font-weight: 700; }
-    ul { padding-left: 18px; margin: 0; color: var(--text-soft); line-height: 1.75; }
-
-    .cert-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 28px;
-    }
-
-    .cert-card img {
-      width: 100%;
-      aspect-ratio: 16 / 11;
-      object-fit: cover;
-      display: block;
-      border-radius: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      margin-top: 12px;
-    }
-
-    .footer-note {
-      padding: 50px 0 70px;
-      color: var(--muted);
-      text-align: center;
-      font-size: 0.95rem;
-    }
-
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; padding-top: 70px; }
-      .particle-box { height: 430px; }
-      .cert-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
-
-    @media (max-width: 560px) {
-      .container { width: min(100% - 28px, 1120px); }
-      .particle-box { height: 360px; border-radius: 24px; }
-      .particle-hint { left: 16px; right: 16px; bottom: 16px; max-width: none; }
-      .cert-grid { grid-template-columns: 1fr; }
+    @media (max-width: 640px) {
+      .hero, section, footer { width: min(100% - 28px, 1180px); }
+      .hero { padding-bottom: 40px; }
+      .hero-visual { min-height: 430px; border-radius: 26px; }
+      .visual-toggle { left: 16px; right: auto; top: 16px; }
+      .visual-overlay { align-items: stretch; flex-direction: column; }
+      .mini-panel { text-align: left; }
+      .stats { grid-template-columns: 1fr; }
+      .certificate-container { grid-template-columns: 1fr; }
+      footer { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <section class="hero">
-      <div>
-        <div class="badge"><span class="badge-dot"></span> Interactive portfolio experience</div>
+  <main class="page">
+    <header class="hero" id="top">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="status-dot"></span> Interactive portfolio experience</div>
         <h1>Omar Zaatreh <span class="gradient-text">Application Developer</span></h1>
-        <p class="subtitle">
-          Application Developer at Petra Engineering, building enterprise systems with Angular,
-          ASP.NET (C#), SQL Server, REST APIs, and Power BI. I work across frontend,
-          backend, database, and reporting layers to deliver reliable business applications
-          and data-driven solutions.
+        <p class="hero-subtitle">
+          Building scalable enterprise applications and data-driven systems using <strong>Angular</strong>, <strong>ASP.NET (C#)</strong>, <strong>SQL Server</strong>, and <strong>Power BI</strong>. Focused on clean architecture, performance, and real-world operational impact.
         </p>
         <div class="cta-row">
           <a class="btn btn-primary" href="#experience">View Experience</a>
-          <a class="btn" href="#certificates">Certifications</a>
-          <a class="btn" href="https://github.com/Ozaatreh" target="_blank" rel="noreferrer">GitHub</a>
-          <a class="btn" href="https://www.linkedin.com/in/omar-zaatreh/" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="btn btn-secondary" href="#certificates">Certifications</a>
+          <a class="btn btn-secondary" href="https://github.com/Ozaatreh" target="_blank" rel="noreferrer">GitHub</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><strong>Enterprise Apps</strong><span>Angular, .NET, REST APIs</span></div>
+          <div class="stat"><strong>Data / BI</strong><span>SQL Server, Power BI, SSRS</span></div>
+          <div class="stat"><strong>Cloud + Mobile</strong><span>APEX, AWS, Flutter, Firebase</span></div>
         </div>
       </div>
 
-      <div class="particle-box">
-        <canvas id="canvas"></canvas>
-        <div class="particle-hint">
-          <strong>Interactive particle identity</strong>
-          <span>Smooth neon particles. Move gently or click to reveal the next skill.</span>
+      <div class="hero-visual" aria-label="Interactive AI core and data network hero">
+        <canvas id="networkCanvas"></canvas>
+        <div class="visual-toggle">
+          <button class="active" data-mode="ai">AI Core</button>
+          <button data-mode="network">Network</button>
+        </div>
+        <div class="visual-overlay">
+          <div class="hint-card"><strong>ChatGPT-style AI core.</strong><span>Move your mouse for parallax, click to trigger a scanning signal, or switch to the network view.</span></div>
+          <div class="mini-panel"><strong id="visualLabel">Application Core</strong><span id="visualSubLabel">optimizing workflows...</span></div>
         </div>
       </div>
-    </section>
+    </header>
 
-    <section class="section" id="experience">
-      <h2>Experience</h2>
-      <p class="section-lead">
-        Practical experience in enterprise applications, backend APIs, database operations,
-        reporting, ERP workflows, and business-focused software delivery.
-      </p>
-
-      <div class="card">
-        <h3>Application Developer — Petra Engineering</h3>
-        <div class="date">Nov 2025 – Present</div>
-        <ul>
-          <li>Develop and maintain enterprise Angular applications used in real business operations.</li>
-          <li>Build ASP.NET (C#) APIs and backend features for internal systems.</li>
-          <li>Work with SQL Server and SSMS to write queries, stored procedures, and reporting logic.</li>
-          <li>Create Power BI dashboards and reporting views to support operational decision-making.</li>
-          <li>Collaborate across frontend, backend, database, and reporting layers to deliver maintainable business solutions.</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>ERP Intern — EHS (Hakeem)</h3>
-        <div class="date">Feb 2025 – Apr 2025</div>
-        <ul>
-          <li>Worked inside the ERP department on real-world enterprise workflows.</li>
-          <li>Supported business process automation and backend-oriented application tasks.</li>
-          <li>Completed Oracle APEX professional training and strengthened database development skills.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section" id="certificates">
-      <h2>Certifications</h2>
-      <p class="section-lead">Selected certifications covering software development, cloud, databases, BI, networking, and agile delivery.</p>
-
-      <div class="cert-grid">
-        <div class="card cert-card">
-          <h3>Flutter & Dart Certificate</h3>
-          <a href="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/Omar%20Murad%20Zaatreh%20(1).jpg" target="_blank" rel="noreferrer">
-            <img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/Omar%20Murad%20Zaatreh%20(1).jpg" alt="Flutter and Dart Certificate" />
-          </a>
+    <section id="about">
+      <h2 class="section-title">Engineering profile</h2>
+      <p class="section-lead">A focused overview of my current software direction: enterprise applications, operational systems, reporting, automation, and user-focused product experiences.</p>
+      <div class="about-grid">
+        <div class="profile-card">
+          <img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/IMG-20250610-WA0011.jpg" alt="Omar Zaatreh" class="profile-image">
+          <h2>Omar Zaatreh</h2>
+          <p>Software Engineering graduate and Application Developer focused on production business systems.</p>
         </div>
-
-        <div class="card cert-card">
-          <h3>Oracle APEX Cloud Developer Certified Professional</h3>
-          <a href="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/Oracle_certificate.png" target="_blank" rel="noreferrer">
-            <img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/Oracle_certificate.png" alt="Oracle APEX Certificate" />
-          </a>
-        </div>
-
-        <div class="card cert-card">
-          <h3>CCNA Certificate</h3>
-          <a href="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/CCNA.jpg" target="_blank" rel="noreferrer">
-            <img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/CCNA.jpg" alt="CCNA Certificate" />
-          </a>
-        </div>
-
-        <div class="card cert-card">
-          <h3>Oracle SQL Databases Specialization</h3>
-          <a href="https://www.coursera.org/account/accomplishments/specialization/61SVAY1E412V" target="_blank" rel="noreferrer">
-            <img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/sql_pic.png" alt="Oracle SQL Certificate" />
-          </a>
-        </div>
-
-        <div class="card cert-card">
-          <h3>AWS Cloud Practitioner Essentials</h3>
-          <a href="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/AWS%20Cloud%20Practitioner%20Essentials.png" target="_blank" rel="noreferrer">
-            <img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/AWS%20Cloud%20Practitioner%20Essentials.png" alt="AWS Cloud Practitioner Essentials" />
-          </a>
-        </div>
-
-        <div class="card cert-card">
-          <h3>.NET Full Stack Foundation</h3>
-          <a href="https://coursera.org/share/271011d95397faea6e39675ae60324f0" target="_blank" rel="noreferrer">
-            <img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/.Net%20Full%20Stack%20Foundation.png" alt=".NET Full Stack Foundation" />
-          </a>
+        <div class="content-card">
+          <p>I am an Application Developer at Petra Engineering, working on enterprise-level systems using Angular, ASP.NET (C#), SQL Server, REST APIs, and Power BI. My role sits across frontend development, backend services, database operations, and business reporting.</p>
+          <p>I build and maintain real internal business applications, implement features for operational workflows, support backend APIs, write and optimize SQL queries and stored procedures, and deliver dashboards that help teams understand business activity and make better decisions.</p>
+          <p>Before that, I worked in the ERP department at Electronic Health Solutions (Hakeem), gaining exposure to enterprise workflows, Oracle APEX, and real-world business process automation. My graduation project, Volo, was a Flutter and Firebase platform connecting nonprofits with volunteers through events, engagement tracking, and achievement rewards.</p>
+          <div class="skill-chips">
+            <span class="chip">Angular</span><span class="chip">ASP.NET / C#</span><span class="chip">SQL Server</span><span class="chip">REST APIs</span><span class="chip">Power BI</span><span class="chip">SSRS</span><span class="chip">Flutter</span><span class="chip">Firebase</span><span class="chip">Oracle APEX</span><span class="chip">AWS Cloud</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <div class="footer-note">Built with code, particles, and a little chaos.</div>
-  </div>
+    <section id="experience">
+      <h2 class="section-title">Experience</h2>
+      <p class="section-lead">Professional experience building enterprise systems, APIs, dashboards, database workflows, and operational tools.</p>
+      <div class="content-card experience-shell">
+        <div class="experience-timeline">
+          <article class="experience-item">
+            <div class="exp-header"><h3>Application Developer — Petra Engineering</h3><span>Nov 2025 – Present</span></div>
+            <ul>
+              <li>Develop and enhance Angular frontend features for internal enterprise applications.</li>
+              <li>Build and support ASP.NET (C#) REST APIs used by business systems and workflows.</li>
+              <li>Write, debug, and optimize SQL Server queries, stored procedures, and reporting logic.</li>
+              <li>Create Power BI and reporting outputs that support operational and management decisions.</li>
+              <li>Work across frontend, backend, database, and BI layers to deliver maintainable business solutions.</li>
+            </ul>
+          </article>
+          <article class="experience-item">
+            <div class="exp-header"><h3>ERP Intern — EHS (Hakeem)</h3><span>Feb 2025 – Apr 2025</span></div>
+            <ul>
+              <li>Contributed to enterprise ERP workflows in a real healthcare technology environment.</li>
+              <li>Worked with Oracle APEX and backend-oriented solutions for business process support.</li>
+              <li>Strengthened understanding of enterprise systems, data flow, and workflow automation.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
 
-  <script>
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d', { alpha: false });
+    <section id="certificates">
+      <h2 class="section-title">Certifications</h2>
+      <p class="section-lead">A selected set of certifications covering software development, cloud, databases, BI, and agile delivery.</p>
+      <div class="certificate-container">
+        <div class="certificate"><h3>Flutter & Dart Certificate</h3><a href="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/Omar%20Murad%20Zaatreh%20(1).jpg" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/Omar%20Murad%20Zaatreh%20(1).jpg" alt="Flutter and Dart Certificate"></a></div>
+        <div class="certificate"><h3>Oracle APEX Cloud Developer Certified Professional</h3><a href="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/Oracle_certificate.png" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/Oracle_certificate.png" alt="Oracle APEX Certificate"></a></div>
+        <div class="certificate"><h3>CCNA Certificate</h3><a href="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/CCNA.jpg" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/CCNA.jpg" alt="CCNA Certificate"></a></div>
+        <div class="certificate"><h3>Oracle SQL Databases Specialization</h3><a href="https://www.coursera.org/account/accomplishments/specialization/61SVAY1E412V" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/sql_pic.png" alt="Oracle SQL Certificate"></a></div>
+        <div class="certificate"><h3>AWS Cloud Practitioner Essentials</h3><a href="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/AWS%20Cloud%20Practitioner%20Essentials.png" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/AWS%20Cloud%20Practitioner%20Essentials.png" alt="AWS Cloud Practitioner Essentials"></a></div>
+        <div class="certificate"><h3>.NET Full Stack Foundation</h3><a href="https://coursera.org/share/271011d95397faea6e39675ae60324f0" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/.Net%20Full%20Stack%20Foundation.png" alt=".NET Full Stack Foundation"></a></div>
+        <div class="certificate"><h3>Data Visualization and Dashboards with Excel and Cognos</h3><a href="https://coursera.org/verify/WOGUB7MK5WBE" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/ibm_vis.png" alt="Data Visualization Certificate"></a></div>
+        <div class="certificate"><h3>Htux - Full Stack Web Development</h3><a href="https://www.credential.net/ba4cbefd-46a4-4866-a279-96f22256f905#acc.uf9tRsgP" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/Htux%20-%20Full%20Stack%20Web%20Development.png" alt="Htux Full Stack Web Development"></a></div>
+        <div class="certificate"><h3>Introduction to Scrum Master Profession</h3><a href="https://www.coursera.org/account/accomplishments/verify/MDB6EJGBJS4U" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/Ozaatreh/Certificats_webPage/refs/heads/main/Introduction%20to%20Scrum%20Master%20Profession.png" alt="Scrum Master Certificate"></a></div>
+      </div>
+    </section>
+  </main>
 
-    let particles = [];
-    let mouse = { x: null, y: null, radius: 64 };
-    let width = 0;
-    let height = 0;
-    let index = 0;
-    let lastFrame = 0;
-    let lastChange = Date.now();
-    let bgCanvas = null;
-    let dotSprite = null;
-    let animationId = null;
+  <footer>
+    <span>© 2026 Omar Zaatreh. Built as an interactive portfolio experience.</span>
+    <div class="social-icons">
+      <a href="https://github.com/Ozaatreh" target="_blank" rel="noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/omar-zaatreh/" target="_blank" rel="noreferrer">LinkedIn</a>
+      <a href="https://github.com/Ozaatreh/Certificats_webPage/blob/main/Omar_cv_wv.pdf" target="_blank" rel="noreferrer">CV</a>
+    </div>
+  </footer>
 
-    const FPS = 42;
-    const FRAME_TIME = 1000 / FPS;
-    const CHANGE_INTERVAL = 5600;
+  <script type="module">
+    import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 
-    const words = [
-      'Omar Zaatreh',
-      'Application Developer',
-      'Angular + .NET',
-      'SQL Server',
-      'Power BI',
-      'REST APIs',
-      'Enterprise Systems'
-    ];
+    const canvas = document.getElementById('networkCanvas');
+    const container = canvas.parentElement;
+    const visualLabel = document.getElementById('visualLabel');
+    const visualSubLabel = document.getElementById('visualSubLabel');
+    const pointer = new THREE.Vector2(0, 0);
+    let mode = 'ai';
+    let pulseTime = -10;
+
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x050816, 0.035);
+    const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+    camera.position.set(0, 0, 18);
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 3));
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+    const aiGroup = new THREE.Group();
+    const networkGroup = new THREE.Group();
+    scene.add(aiGroup, networkGroup);
+
+    const glowTexture = (() => {
+      const c = document.createElement('canvas'); c.width = c.height = 128;
+      const ctx = c.getContext('2d');
+      const g = ctx.createRadialGradient(64,64,0,64,64,64);
+      g.addColorStop(0,'rgba(255,255,255,1)'); g.addColorStop(.2,'rgba(120,220,255,.65)'); g.addColorStop(.55,'rgba(80,120,255,.18)'); g.addColorStop(1,'rgba(0,0,0,0)');
+      ctx.fillStyle = g; ctx.fillRect(0,0,128,128);
+      return new THREE.CanvasTexture(c);
+    })();
+
+    function buildAiCore() {
+      const count = 1300;
+      const positions = new Float32Array(count * 3);
+      const colors = new Float32Array(count * 3);
+      for (let i = 0; i < count; i++) {
+        const y = 1 - (i / (count - 1)) * 2;
+        const radius = Math.sqrt(1 - y * y);
+        const theta = i * Math.PI * (3 - Math.sqrt(5));
+        const wave = 1 + 0.055 * Math.sin(theta * 7);
+        positions[i*3] = Math.cos(theta) * radius * 5.3 * wave;
+        positions[i*3+1] = y * 5.3;
+        positions[i*3+2] = Math.sin(theta) * radius * 5.3 * wave;
+        const cyanBias = Math.max(0, Math.sin(theta * 2 + y * 4));
+        colors[i*3] = 0.55 + cyanBias * 0.2;
+        colors[i*3+1] = 0.72 + cyanBias * 0.28;
+        colors[i*3+2] = 1;
+      }
+      const geometry = new THREE.BufferGeometry();
+      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+      const material = new THREE.PointsMaterial({ size: 0.075, vertexColors: true, transparent: true, opacity: 0.88, blending: THREE.AdditiveBlending, depthWrite: false });
+      const points = new THREE.Points(geometry, material);
+      aiGroup.add(points);
+
+      const ringMat1 = new THREE.MeshBasicMaterial({ color: 0xe8f4ff, transparent: true, opacity: .65, blending: THREE.AdditiveBlending, depthWrite: false });
+      const ringMat2 = new THREE.MeshBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: .42, blending: THREE.AdditiveBlending, depthWrite: false });
+      const ring1 = new THREE.Mesh(new THREE.TorusGeometry(3.25, 0.035, 12, 180), ringMat1);
+      const ring2 = new THREE.Mesh(new THREE.TorusGeometry(2.1, 0.045, 12, 180), ringMat2);
+      ring1.rotation.set(1.2, 0.15, 0.45); ring1.position.set(1.25, 1.4, 1.7);
+      ring2.rotation.set(1.1, -0.25, -0.75); ring2.position.set(-1.35, -1.15, 1.2);
+      aiGroup.add(ring1, ring2);
+
+      const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTexture, color: 0x38bdf8, transparent: true, opacity: .22, blending: THREE.AdditiveBlending, depthWrite: false }));
+      sprite.scale.set(13, 13, 1);
+      aiGroup.add(sprite);
+      return { points, ring1, ring2, sprite };
+    }
+
+    function buildNetwork() {
+      const nodes = [], edges = [];
+      const nodeGeo = new THREE.IcosahedronGeometry(0.38, 2);
+      for (let i = 0; i < 26; i++) {
+        const angle = (i / 26) * Math.PI * 2;
+        const r = 3 + (i % 4) * 1.3;
+        const mesh = new THREE.Mesh(nodeGeo, new THREE.MeshBasicMaterial({ color: i%3===0?0x38bdf8:i%3===1?0x8b5cf6:0x60a5fa, transparent:true, opacity:.85, blending:THREE.AdditiveBlending, depthWrite:false }));
+        mesh.position.set(Math.cos(angle)*r + (Math.random()-.5)*1.5, Math.sin(angle*1.3)*r*.65 + (Math.random()-.5)*1.5, (Math.random()-.5)*5);
+        mesh.userData.base = mesh.position.clone(); mesh.userData.phase = Math.random()*10;
+        networkGroup.add(mesh); nodes.push(mesh);
+      }
+      nodes.forEach((a, i) => {
+        const close = nodes.map((b,j)=>({j,d:a.position.distanceTo(b.position)})).filter(x=>x.j!==i).sort((x,y)=>x.d-y.d).slice(0,2);
+        close.forEach(({j}) => {
+          if (edges.some(e => (e.a===i&&e.b===j)||(e.a===j&&e.b===i))) return;
+          const line = new THREE.Line(new THREE.BufferGeometry().setFromPoints([a.position, nodes[j].position]), new THREE.LineBasicMaterial({ color: 0x60a5fa, transparent:true, opacity:.28, blending:THREE.AdditiveBlending }));
+          networkGroup.add(line); edges.push({ line, a:i, b:j });
+        });
+      });
+      return { nodes, edges };
+    }
+
+    const ai = buildAiCore();
+    const net = buildNetwork();
+    networkGroup.visible = false;
 
     function resize() {
-      width = canvas.parentElement.clientWidth;
-      height = canvas.parentElement.clientHeight;
-      canvas.width = width;
-      canvas.height = height;
-      canvas.style.width = width + 'px';
-      canvas.style.height = height + 'px';
-
-      buildBackground();
-      buildDotSprite();
-      buildText(words[index], true);
+      const rect = container.getBoundingClientRect();
+      renderer.setSize(rect.width, rect.height, false);
+      camera.aspect = rect.width / rect.height;
+      camera.updateProjectionMatrix();
     }
-
-    function buildBackground() {
-      bgCanvas = document.createElement('canvas');
-      bgCanvas.width = width;
-      bgCanvas.height = height;
-
-      const bctx = bgCanvas.getContext('2d');
-      bctx.fillStyle = '#020617';
-      bctx.fillRect(0, 0, width, height);
-
-      const glow = bctx.createRadialGradient(width / 2, height / 2, 8, width / 2, height / 2, width * 0.74);
-      glow.addColorStop(0, 'rgba(236,72,153,0.14)');
-      glow.addColorStop(0.48, 'rgba(56,189,248,0.05)');
-      glow.addColorStop(1, 'rgba(2,6,23,0)');
-      bctx.fillStyle = glow;
-      bctx.fillRect(0, 0, width, height);
-    }
-
-    function buildDotSprite() {
-      const spriteSize = 18;
-      dotSprite = document.createElement('canvas');
-      dotSprite.width = spriteSize;
-      dotSprite.height = spriteSize;
-
-      const dctx = dotSprite.getContext('2d');
-      const glow = dctx.createRadialGradient(
-        spriteSize / 2,
-        spriteSize / 2,
-        1,
-        spriteSize / 2,
-        spriteSize / 2,
-        spriteSize / 2
-      );
-
-      glow.addColorStop(0, 'rgba(255,255,255,1)');
-      glow.addColorStop(0.28, 'rgba(255,140,230,1)');
-      glow.addColorStop(0.5, 'rgba(236,72,153,0.9)');
-      glow.addColorStop(0.78, 'rgba(236,72,153,0.34)');
-      glow.addColorStop(1, 'rgba(236,72,153,0)');
-
-      dctx.fillStyle = glow;
-      dctx.beginPath();
-      dctx.arc(spriteSize / 2, spriteSize / 2, spriteSize / 2, 0, Math.PI * 2);
-      dctx.fill();
-    }
-
-    function getFittedFontSize(text) {
-      const measureCanvas = document.createElement('canvas');
-      const measureCtx = measureCanvas.getContext('2d');
-      const maxTextWidth = width * 0.78;
-      let size = width < 560 ? 50 : 74;
-
-      while (size > 24) {
-        measureCtx.font = `900 ${size}px Inter, Arial, sans-serif`;
-        if (measureCtx.measureText(text).width <= maxTextWidth) break;
-        size -= 2;
-      }
-
-      return size;
-    }
-
-    function buildText(text, immediate = false) {
-      const temp = document.createElement('canvas');
-      const tctx = temp.getContext('2d', { willReadFrequently: true });
-      temp.width = width;
-      temp.height = height;
-
-      const fontSize = getFittedFontSize(text);
-      tctx.font = `900 ${fontSize}px Inter, Arial, sans-serif`;
-      tctx.textAlign = 'center';
-      tctx.textBaseline = 'middle';
-      tctx.fillStyle = '#fff';
-      tctx.fillText(text, width / 2, height / 2);
-
-      const data = tctx.getImageData(0, 0, width, height).data;
-      const targets = [];
-      const gap = width < 560 ? 7 : 6;
-
-      for (let y = 0; y < height; y += gap) {
-        for (let x = 0; x < width; x += gap) {
-          const i = (y * width + x) * 4;
-          if (data[i + 3] > 128) targets.push({ x, y });
-        }
-      }
-
-      const maxParticles = Math.min(targets.length, width < 560 ? 720 : 1180);
-      const nextParticles = [];
-
-      for (let i = 0; i < maxParticles; i++) {
-        const target = targets[Math.floor((i / maxParticles) * targets.length)] || { x: width / 2, y: height / 2 };
-        const old = particles[i];
-
-        nextParticles.push({
-          x: immediate || !old ? Math.random() * width : old.x,
-          y: immediate || !old ? Math.random() * height : old.y,
-          tx: target.x,
-          ty: target.y,
-          vx: old ? old.vx : 0,
-          vy: old ? old.vy : 0,
-          size: width < 560 ? 7.2 : 8.4
-        });
-      }
-
-      particles = nextParticles;
-    }
-
-    function nextWord() {
-      index = (index + 1) % words.length;
-      buildText(words[index]);
-      lastChange = Date.now();
-    }
-
-    function animate(now = 0) {
-      animationId = requestAnimationFrame(animate);
-      if (now - lastFrame < FRAME_TIME) return;
-      lastFrame = now;
-
-      ctx.drawImage(bgCanvas, 0, 0);
-
-      const hasMouse = mouse.x !== null;
-      const radiusSq = mouse.radius * mouse.radius;
-
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        const dx = p.tx - p.x;
-        const dy = p.ty - p.y;
-
-        p.vx += dx * 0.018;
-        p.vy += dy * 0.018;
-
-        if (hasMouse) {
-          const mx = p.x - mouse.x;
-          const my = p.y - mouse.y;
-          const distSq = mx * mx + my * my;
-
-          if (distSq < radiusSq && distSq > 0.01) {
-            const dist = Math.sqrt(distSq);
-            const force = (mouse.radius - dist) / mouse.radius;
-            p.vx += (mx / dist) * force * 1.35;
-            p.vy += (my / dist) * force * 1.35;
-          }
-        }
-
-        p.vx *= 0.885;
-        p.vy *= 0.885;
-        p.x += p.vx;
-        p.y += p.vy;
-
-        ctx.drawImage(dotSprite, p.x - p.size / 2, p.y - p.size / 2, p.size, p.size);
-      }
-
-      if (Date.now() - lastChange > CHANGE_INTERVAL) nextWord();
-    }
+    window.addEventListener('resize', resize); resize();
 
     canvas.addEventListener('mousemove', (event) => {
       const rect = canvas.getBoundingClientRect();
-      mouse.x = event.clientX - rect.left;
-      mouse.y = event.clientY - rect.top;
-    }, { passive: true });
+      pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+      pointer.y = -(((event.clientY - rect.top) / rect.height) * 2 - 1);
+    });
+    canvas.addEventListener('mouseleave', () => pointer.set(0,0));
+    canvas.addEventListener('click', () => pulseTime = performance.now());
 
-    canvas.addEventListener('mouseleave', () => {
-      mouse.x = null;
-      mouse.y = null;
+    document.querySelectorAll('.visual-toggle button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.visual-toggle button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        mode = btn.dataset.mode;
+        aiGroup.visible = mode === 'ai';
+        networkGroup.visible = mode === 'network';
+        visualLabel.textContent = mode === 'ai' ? 'Application Core' : 'Live Network';
+        visualSubLabel.textContent = mode === 'ai' ? 'optimizing workflows...' : 'routing data signals...';
+      });
     });
 
-    canvas.addEventListener('click', nextWord);
+    function animate(time) {
+      requestAnimationFrame(animate);
+      const t = time * 0.001;
+      camera.position.x += (pointer.x * 1.15 - camera.position.x) * .035;
+      camera.position.y += (pointer.y * .85 - camera.position.y) * .035;
+      camera.lookAt(0,0,0);
 
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(resize, 140);
-    });
+      aiGroup.rotation.y = t * .32 + pointer.x * .12;
+      aiGroup.rotation.x = pointer.y * .1;
+      ai.points.material.size = 0.075 + Math.sin(t*2.2)*0.006;
+      ai.ring1.rotation.z += .012;
+      ai.ring2.rotation.z -= .016;
+      const pulse = Math.max(0, 1 - (time - pulseTime) / 900);
+      ai.ring1.material.opacity = .55 + pulse * .45;
+      ai.ring2.material.opacity = .35 + pulse * .5;
+      ai.sprite.material.opacity = .20 + pulse * .18;
+      aiGroup.scale.setScalar(1 + pulse * .035);
 
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden && animationId) cancelAnimationFrame(animationId);
-      if (!document.hidden) {
-        lastFrame = 0;
-        animate();
-      }
-    });
-
-    resize();
-    animate();
+      networkGroup.rotation.y += .0018;
+      net.nodes.forEach((node) => {
+        const b = node.userData.base;
+        node.position.x = b.x + Math.sin(t + node.userData.phase) * .18 + pointer.x * .22;
+        node.position.y = b.y + Math.cos(t + node.userData.phase) * .18 + pointer.y * .22;
+      });
+      net.edges.forEach(({line,a,b}) => {
+        const p = line.geometry.attributes.position;
+        p.setXYZ(0, net.nodes[a].position.x, net.nodes[a].position.y, net.nodes[a].position.z);
+        p.setXYZ(1, net.nodes[b].position.x, net.nodes[b].position.y, net.nodes[b].position.z);
+        p.needsUpdate = true;
+      });
+      renderer.render(scene, camera);
+    }
+    requestAnimationFrame(animate);
   </script>
 </body>
 </html>
